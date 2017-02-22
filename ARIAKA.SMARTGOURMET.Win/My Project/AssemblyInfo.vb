@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("ARIAKA.SMARTGOURMET")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Microsoft")> 
-<Assembly: AssemblyProduct("ARIAKA.SMARTGOURMET")> 
-<Assembly: AssemblyCopyright("Copyright © Microsoft 2017")> 
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTitle("ARIAKA.SMARTGOURMET.Win")> 
+<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyCompany("ARIAKA LTDA")>
+<Assembly: AssemblyProduct("ARIAKA.SMARTGOURMET.Win")>
+<Assembly: AssemblyCopyright("Copyright © ARIAKA LTDA 2017")>
+<Assembly: AssemblyTrademark("ARIAKA")>
 
 <Assembly: ComVisible(False)>
 
 'El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-<Assembly: Guid("379df7eb-3b84-47ff-9a8a-ff945b06829e")> 
+<Assembly: Guid("57fa3477-58f1-47cb-9458-049e7244e676")> 
 
 ' La información de versión de un ensamblado consta de los cuatro valores siguientes:
 '
