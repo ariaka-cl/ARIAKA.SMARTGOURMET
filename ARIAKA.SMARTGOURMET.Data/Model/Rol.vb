@@ -4,17 +4,17 @@ Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Data.Entity.Spatial
 
-<Table("bdSmartGourmet.Categoria")>
-Partial Public Class Categoria
+<Table("bdSmartGourmet.Rol")>
+Partial Public Class Rol
     Public Sub New()
-        Productoes = New HashSet(Of Producto)()
+        Users = New HashSet(Of User)()
     End Sub
 
     Public Property ID As Integer
 
     <Required>
     <StringLength(45)>
-    Public Property Nombre As String
+    Public Property NombreRol As String
 
-    Public Overridable Property Productoes As ICollection(Of Producto)
+    Public Overridable Property Users As ICollection(Of User)
 End Class
