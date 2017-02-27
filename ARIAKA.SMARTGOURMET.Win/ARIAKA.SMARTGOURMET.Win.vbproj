@@ -187,6 +187,8 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.MesaDetalleDTO.datasource" />
+    <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.ProductosDTO.datasource" />
+    <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.UserDTO.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

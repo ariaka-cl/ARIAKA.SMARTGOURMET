@@ -19,6 +19,7 @@ Partial Class MesaControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MesaControl))
         Me.TableLayoutPanel_MesaMain = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel_MesaRow1 = New System.Windows.Forms.TableLayoutPanel()
@@ -37,19 +38,29 @@ Partial Class MesaControl
         Me.LabelControl_Garzon = New DevExpress.XtraEditors.LabelControl()
         Me.DateTimePicker_Fecha = New System.Windows.Forms.DateTimePicker()
         Me.ComboBox_Garzones = New System.Windows.Forms.ComboBox()
+        Me.UserDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SearchLookUpEdit_Producto = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.ProductosDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colProducCodigo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colNombre = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colCategoria = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colPrecio = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colStock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TableLayoutPanel_ButtonsProdu = New System.Windows.Forms.TableLayoutPanel()
         Me.SimpleButton_Plus = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton_Minus = New DevExpress.XtraEditors.SimpleButton()
-        Me.RichTextBox_Comentarios = New System.Windows.Forms.RichTextBox()
         Me.ProductosMesaControl1 = New ARIAKA.SMARTGOURMET.Win.ProductosMesaControl()
+        Me.RichTextBox_Comentarios = New System.Windows.Forms.RichTextBox()
         Me.TableLayoutPanel_MesaMain.SuspendLayout()
         Me.TableLayoutPanel_MesaRow1.SuspendLayout()
         Me.TableLayoutPanel_Row1Buttons.SuspendLayout()
         Me.TableLayoutPanel_Row1_Total.SuspendLayout()
         Me.TableLayoutPanel_Mesa_Row2.SuspendLayout()
+        CType(Me.UserDTOBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit_Producto.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ProductosDTOBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel_ButtonsProdu.SuspendLayout()
         Me.SuspendLayout()
@@ -229,8 +240,8 @@ Partial Class MesaControl
         Me.TableLayoutPanel_Mesa_Row2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.57697!))
         Me.TableLayoutPanel_Mesa_Row2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
         Me.TableLayoutPanel_Mesa_Row2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
-        Me.TableLayoutPanel_Mesa_Row2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
-        Me.TableLayoutPanel_Mesa_Row2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel_Mesa_Row2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.59419!))
+        Me.TableLayoutPanel_Mesa_Row2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.31324!))
         Me.TableLayoutPanel_Mesa_Row2.Controls.Add(Me.LabelControl_Fecha, 2, 0)
         Me.TableLayoutPanel_Mesa_Row2.Controls.Add(Me.LabelControl_Garzon, 4, 0)
         Me.TableLayoutPanel_Mesa_Row2.Controls.Add(Me.DateTimePicker_Fecha, 3, 0)
@@ -249,7 +260,7 @@ Partial Class MesaControl
         '
         Me.LabelControl_Fecha.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.LabelControl_Fecha.Appearance.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl_Fecha.Location = New System.Drawing.Point(399, 19)
+        Me.LabelControl_Fecha.Location = New System.Drawing.Point(396, 19)
         Me.LabelControl_Fecha.Name = "LabelControl_Fecha"
         Me.LabelControl_Fecha.Size = New System.Drawing.Size(61, 25)
         Me.LabelControl_Fecha.TabIndex = 1
@@ -259,7 +270,7 @@ Partial Class MesaControl
         '
         Me.LabelControl_Garzon.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.LabelControl_Garzon.Appearance.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl_Garzon.Location = New System.Drawing.Point(695, 19)
+        Me.LabelControl_Garzon.Location = New System.Drawing.Point(652, 19)
         Me.LabelControl_Garzon.Name = "LabelControl_Garzon"
         Me.LabelControl_Garzon.Size = New System.Drawing.Size(75, 25)
         Me.LabelControl_Garzon.TabIndex = 2
@@ -270,39 +281,102 @@ Partial Class MesaControl
         Me.DateTimePicker_Fecha.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.DateTimePicker_Fecha.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePicker_Fecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker_Fecha.Location = New System.Drawing.Point(466, 17)
+        Me.DateTimePicker_Fecha.Location = New System.Drawing.Point(463, 17)
         Me.DateTimePicker_Fecha.Name = "DateTimePicker_Fecha"
-        Me.DateTimePicker_Fecha.Size = New System.Drawing.Size(149, 30)
+        Me.DateTimePicker_Fecha.Size = New System.Drawing.Size(148, 30)
         Me.DateTimePicker_Fecha.TabIndex = 4
         '
         'ComboBox_Garzones
         '
         Me.ComboBox_Garzones.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.ComboBox_Garzones.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBox_Garzones.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.UserDTOBindingSource, "ID", True))
+        Me.ComboBox_Garzones.DataSource = Me.UserDTOBindingSource
+        Me.ComboBox_Garzones.DisplayMember = "Nombre"
+        Me.ComboBox_Garzones.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox_Garzones.FormattingEnabled = True
-        Me.ComboBox_Garzones.Location = New System.Drawing.Point(776, 15)
+        Me.ComboBox_Garzones.Location = New System.Drawing.Point(733, 18)
         Me.ComboBox_Garzones.Name = "ComboBox_Garzones"
-        Me.ComboBox_Garzones.Size = New System.Drawing.Size(135, 33)
+        Me.ComboBox_Garzones.Size = New System.Drawing.Size(175, 27)
         Me.ComboBox_Garzones.TabIndex = 5
+        Me.ComboBox_Garzones.ValueMember = "ID"
+        '
+        'UserDTOBindingSource
+        '
+        Me.UserDTOBindingSource.DataSource = GetType(ARIAKA.SMARTGOURMET.Win.Models.UserDTO)
         '
         'SearchLookUpEdit_Producto
         '
         Me.SearchLookUpEdit_Producto.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.SearchLookUpEdit_Producto.Location = New System.Drawing.Point(3, 18)
+        Me.SearchLookUpEdit_Producto.EditValue = "Buscar..."
+        Me.SearchLookUpEdit_Producto.Location = New System.Drawing.Point(3, 19)
         Me.SearchLookUpEdit_Producto.Name = "SearchLookUpEdit_Producto"
         Me.SearchLookUpEdit_Producto.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SearchLookUpEdit_Producto.Properties.Appearance.Options.UseFont = True
         Me.SearchLookUpEdit_Producto.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit_Producto.Properties.DataSource = Me.ProductosDTOBindingSource
+        Me.SearchLookUpEdit_Producto.Properties.DisplayMember = "Nombre"
+        Me.SearchLookUpEdit_Producto.Properties.ValueMember = "Id"
         Me.SearchLookUpEdit_Producto.Properties.View = Me.SearchLookUpEdit1View
-        Me.SearchLookUpEdit_Producto.Size = New System.Drawing.Size(142, 28)
+        Me.SearchLookUpEdit_Producto.Size = New System.Drawing.Size(142, 26)
         Me.SearchLookUpEdit_Producto.TabIndex = 6
+        '
+        'ProductosDTOBindingSource
+        '
+        Me.ProductosDTOBindingSource.DataSource = GetType(ARIAKA.SMARTGOURMET.Win.Models.ProductosDTO)
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colId, Me.colProducCodigo, Me.colNombre, Me.colCategoria, Me.colPrecio, Me.colStock})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'colId
+        '
+        Me.colId.Caption = "Id"
+        Me.colId.FieldName = "Id"
+        Me.colId.Name = "colId"
+        '
+        'colProducCodigo
+        '
+        Me.colProducCodigo.Caption = "Codigo Producto"
+        Me.colProducCodigo.FieldName = "ProducCodigo"
+        Me.colProducCodigo.Name = "colProducCodigo"
+        Me.colProducCodigo.Visible = True
+        Me.colProducCodigo.VisibleIndex = 0
+        '
+        'colNombre
+        '
+        Me.colNombre.Caption = "Nombre"
+        Me.colNombre.FieldName = "Nombre"
+        Me.colNombre.Name = "colNombre"
+        Me.colNombre.Visible = True
+        Me.colNombre.VisibleIndex = 1
+        '
+        'colCategoria
+        '
+        Me.colCategoria.Caption = "Categoria"
+        Me.colCategoria.FieldName = "Categoria"
+        Me.colCategoria.Name = "colCategoria"
+        Me.colCategoria.Visible = True
+        Me.colCategoria.VisibleIndex = 2
+        '
+        'colPrecio
+        '
+        Me.colPrecio.Caption = "Precio"
+        Me.colPrecio.FieldName = "Precio"
+        Me.colPrecio.Name = "colPrecio"
+        Me.colPrecio.Visible = True
+        Me.colPrecio.VisibleIndex = 3
+        '
+        'colStock
+        '
+        Me.colStock.Caption = "Stock"
+        Me.colStock.FieldName = "Stock"
+        Me.colStock.Name = "colStock"
+        Me.colStock.Visible = True
+        Me.colStock.VisibleIndex = 4
         '
         'TableLayoutPanel_ButtonsProdu
         '
@@ -312,11 +386,11 @@ Partial Class MesaControl
         Me.TableLayoutPanel_ButtonsProdu.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel_ButtonsProdu.Controls.Add(Me.SimpleButton_Plus, 0, 0)
         Me.TableLayoutPanel_ButtonsProdu.Controls.Add(Me.SimpleButton_Minus, 1, 0)
-        Me.TableLayoutPanel_ButtonsProdu.Location = New System.Drawing.Point(157, 3)
+        Me.TableLayoutPanel_ButtonsProdu.Location = New System.Drawing.Point(156, 3)
         Me.TableLayoutPanel_ButtonsProdu.Name = "TableLayoutPanel_ButtonsProdu"
         Me.TableLayoutPanel_ButtonsProdu.RowCount = 1
         Me.TableLayoutPanel_ButtonsProdu.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel_ButtonsProdu.Size = New System.Drawing.Size(148, 58)
+        Me.TableLayoutPanel_ButtonsProdu.Size = New System.Drawing.Size(147, 58)
         Me.TableLayoutPanel_ButtonsProdu.TabIndex = 7
         '
         'SimpleButton_Plus
@@ -341,6 +415,14 @@ Partial Class MesaControl
         Me.SimpleButton_Minus.Size = New System.Drawing.Size(43, 43)
         Me.SimpleButton_Minus.TabIndex = 1
         '
+        'ProductosMesaControl1
+        '
+        Me.ProductosMesaControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProductosMesaControl1.Location = New System.Drawing.Point(3, 133)
+        Me.ProductosMesaControl1.Name = "ProductosMesaControl1"
+        Me.ProductosMesaControl1.Size = New System.Drawing.Size(929, 290)
+        Me.ProductosMesaControl1.TabIndex = 2
+        '
         'RichTextBox_Comentarios
         '
         Me.RichTextBox_Comentarios.Dock = System.Windows.Forms.DockStyle.Fill
@@ -349,14 +431,6 @@ Partial Class MesaControl
         Me.RichTextBox_Comentarios.Size = New System.Drawing.Size(929, 100)
         Me.RichTextBox_Comentarios.TabIndex = 3
         Me.RichTextBox_Comentarios.Text = ""
-        '
-        'ProductosMesaControl1
-        '
-        Me.ProductosMesaControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ProductosMesaControl1.Location = New System.Drawing.Point(3, 133)
-        Me.ProductosMesaControl1.Name = "ProductosMesaControl1"
-        Me.ProductosMesaControl1.Size = New System.Drawing.Size(929, 290)
-        Me.ProductosMesaControl1.TabIndex = 2
         '
         'MesaControl
         '
@@ -372,7 +446,9 @@ Partial Class MesaControl
         Me.TableLayoutPanel_Row1_Total.PerformLayout()
         Me.TableLayoutPanel_Mesa_Row2.ResumeLayout(False)
         Me.TableLayoutPanel_Mesa_Row2.PerformLayout()
+        CType(Me.UserDTOBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit_Producto.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProductosDTOBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel_ButtonsProdu.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -403,4 +479,12 @@ Partial Class MesaControl
     Friend WithEvents SimpleButton_Plus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton_Minus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RichTextBox_Comentarios As Windows.Forms.RichTextBox
+    Friend WithEvents UserDTOBindingSource As Windows.Forms.BindingSource
+    Friend WithEvents ProductosDTOBindingSource As Windows.Forms.BindingSource
+    Friend WithEvents colId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colProducCodigo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colNombre As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colCategoria As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colPrecio As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colStock As DevExpress.XtraGrid.Columns.GridColumn
 End Class
