@@ -3,10 +3,10 @@ Namespace Models
         Public Property ID As Integer
         Public Property Numero As String
         Public Property FechaCreacion As Date?
-        Public Property Estado As Boolean?
+        Public Property Estado As MesaEstado?
         Public Property UsuarioID As Integer?
-        Public Overridable Property Boletas As ICollection(Of BoletaDTO)
-        Public Overridable Property MesaDetalles As ICollection(Of MesaDetalleDTO)
-        Public Overridable Property User As UserDTO
+        Public Property Usuario As UserDTO
+        Public Property MesaDetalles As List(Of MesaDetalleDTO)
+
     End Class
 End Namespace

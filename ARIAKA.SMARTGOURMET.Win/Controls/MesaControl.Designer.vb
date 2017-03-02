@@ -25,8 +25,8 @@ Partial Class MesaControl
         Me.TableLayoutPanel_MesaRow1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel_Row1Buttons = New System.Windows.Forms.TableLayoutPanel()
         Me.SimpleButton_Pagar = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton_Print = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton_Cocina = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton_Imprimir = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton_Guardar = New DevExpress.XtraEditors.SimpleButton()
         Me.TableLayoutPanel_Row1_Total = New System.Windows.Forms.TableLayoutPanel()
         Me.LabelControl_NumeroMesa = New DevExpress.XtraEditors.LabelControl()
@@ -87,8 +87,8 @@ Partial Class MesaControl
         'TableLayoutPanel_MesaRow1
         '
         Me.TableLayoutPanel_MesaRow1.ColumnCount = 2
-        Me.TableLayoutPanel_MesaRow1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.52207!))
-        Me.TableLayoutPanel_MesaRow1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.47794!))
+        Me.TableLayoutPanel_MesaRow1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.98063!))
+        Me.TableLayoutPanel_MesaRow1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.01937!))
         Me.TableLayoutPanel_MesaRow1.Controls.Add(Me.TableLayoutPanel_Row1Buttons, 1, 0)
         Me.TableLayoutPanel_MesaRow1.Controls.Add(Me.TableLayoutPanel_Row1_Total, 0, 0)
         Me.TableLayoutPanel_MesaRow1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -108,15 +108,15 @@ Partial Class MesaControl
         Me.TableLayoutPanel_Row1Buttons.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00063!))
         Me.TableLayoutPanel_Row1Buttons.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00063!))
         Me.TableLayoutPanel_Row1Buttons.Controls.Add(Me.SimpleButton_Pagar, 4, 0)
-        Me.TableLayoutPanel_Row1Buttons.Controls.Add(Me.SimpleButton_Cocina, 3, 0)
-        Me.TableLayoutPanel_Row1Buttons.Controls.Add(Me.SimpleButton_Imprimir, 2, 0)
+        Me.TableLayoutPanel_Row1Buttons.Controls.Add(Me.SimpleButton_Print, 3, 0)
+        Me.TableLayoutPanel_Row1Buttons.Controls.Add(Me.SimpleButton_Cocina, 2, 0)
         Me.TableLayoutPanel_Row1Buttons.Controls.Add(Me.SimpleButton_Guardar, 1, 0)
         Me.TableLayoutPanel_Row1Buttons.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel_Row1Buttons.Location = New System.Drawing.Point(332, 3)
+        Me.TableLayoutPanel_Row1Buttons.Location = New System.Drawing.Point(393, 3)
         Me.TableLayoutPanel_Row1Buttons.Name = "TableLayoutPanel_Row1Buttons"
         Me.TableLayoutPanel_Row1Buttons.RowCount = 1
         Me.TableLayoutPanel_Row1Buttons.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel_Row1Buttons.Size = New System.Drawing.Size(594, 48)
+        Me.TableLayoutPanel_Row1Buttons.Size = New System.Drawing.Size(533, 48)
         Me.TableLayoutPanel_Row1Buttons.TabIndex = 0
         '
         'SimpleButton_Pagar
@@ -127,39 +127,39 @@ Partial Class MesaControl
         Me.SimpleButton_Pagar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.SimpleButton_Pagar.Image = CType(resources.GetObject("SimpleButton_Pagar.Image"), System.Drawing.Image)
         Me.SimpleButton_Pagar.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-        Me.SimpleButton_Pagar.Location = New System.Drawing.Point(472, 3)
+        Me.SimpleButton_Pagar.Location = New System.Drawing.Point(418, 3)
         Me.SimpleButton_Pagar.Name = "SimpleButton_Pagar"
         Me.SimpleButton_Pagar.Size = New System.Drawing.Size(104, 42)
         Me.SimpleButton_Pagar.TabIndex = 3
         Me.SimpleButton_Pagar.Text = "Pagar"
         '
+        'SimpleButton_Print
+        '
+        Me.SimpleButton_Print.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.SimpleButton_Print.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SimpleButton_Print.Appearance.Options.UseFont = True
+        Me.SimpleButton_Print.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.SimpleButton_Print.Image = CType(resources.GetObject("SimpleButton_Print.Image"), System.Drawing.Image)
+        Me.SimpleButton_Print.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
+        Me.SimpleButton_Print.Location = New System.Drawing.Point(293, 3)
+        Me.SimpleButton_Print.Name = "SimpleButton_Print"
+        Me.SimpleButton_Print.Size = New System.Drawing.Size(104, 42)
+        Me.SimpleButton_Print.TabIndex = 2
+        Me.SimpleButton_Print.Text = "Imprimir"
+        '
         'SimpleButton_Cocina
         '
         Me.SimpleButton_Cocina.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.SimpleButton_Cocina.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SimpleButton_Cocina.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SimpleButton_Cocina.Appearance.Options.UseFont = True
         Me.SimpleButton_Cocina.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.SimpleButton_Cocina.Image = CType(resources.GetObject("SimpleButton_Cocina.Image"), System.Drawing.Image)
         Me.SimpleButton_Cocina.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-        Me.SimpleButton_Cocina.Location = New System.Drawing.Point(332, 3)
+        Me.SimpleButton_Cocina.Location = New System.Drawing.Point(170, 3)
         Me.SimpleButton_Cocina.Name = "SimpleButton_Cocina"
         Me.SimpleButton_Cocina.Size = New System.Drawing.Size(104, 42)
-        Me.SimpleButton_Cocina.TabIndex = 2
+        Me.SimpleButton_Cocina.TabIndex = 1
         Me.SimpleButton_Cocina.Text = "Cocina"
-        '
-        'SimpleButton_Imprimir
-        '
-        Me.SimpleButton_Imprimir.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.SimpleButton_Imprimir.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SimpleButton_Imprimir.Appearance.Options.UseFont = True
-        Me.SimpleButton_Imprimir.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.SimpleButton_Imprimir.Image = CType(resources.GetObject("SimpleButton_Imprimir.Image"), System.Drawing.Image)
-        Me.SimpleButton_Imprimir.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-        Me.SimpleButton_Imprimir.Location = New System.Drawing.Point(193, 3)
-        Me.SimpleButton_Imprimir.Name = "SimpleButton_Imprimir"
-        Me.SimpleButton_Imprimir.Size = New System.Drawing.Size(104, 42)
-        Me.SimpleButton_Imprimir.TabIndex = 1
-        Me.SimpleButton_Imprimir.Text = "Imprimir"
         '
         'SimpleButton_Guardar
         '
@@ -169,7 +169,7 @@ Partial Class MesaControl
         Me.SimpleButton_Guardar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.SimpleButton_Guardar.Image = CType(resources.GetObject("SimpleButton_Guardar.Image"), System.Drawing.Image)
         Me.SimpleButton_Guardar.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-        Me.SimpleButton_Guardar.Location = New System.Drawing.Point(55, 3)
+        Me.SimpleButton_Guardar.Location = New System.Drawing.Point(47, 3)
         Me.SimpleButton_Guardar.Name = "SimpleButton_Guardar"
         Me.SimpleButton_Guardar.Size = New System.Drawing.Size(104, 42)
         Me.SimpleButton_Guardar.TabIndex = 0
@@ -178,10 +178,10 @@ Partial Class MesaControl
         'TableLayoutPanel_Row1_Total
         '
         Me.TableLayoutPanel_Row1_Total.ColumnCount = 4
-        Me.TableLayoutPanel_Row1_Total.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.62539!))
-        Me.TableLayoutPanel_Row1_Total.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.0743!))
-        Me.TableLayoutPanel_Row1_Total.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.95975!))
-        Me.TableLayoutPanel_Row1_Total.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.03096!))
+        Me.TableLayoutPanel_Row1_Total.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.69792!))
+        Me.TableLayoutPanel_Row1_Total.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.21875!))
+        Me.TableLayoutPanel_Row1_Total.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel_Row1_Total.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.5625!))
         Me.TableLayoutPanel_Row1_Total.Controls.Add(Me.LabelControl_NumeroMesa, 2, 0)
         Me.TableLayoutPanel_Row1_Total.Controls.Add(Me.LabelControl_Total, 0, 0)
         Me.TableLayoutPanel_Row1_Total.Controls.Add(Me.TextBox_NumeroMesa, 3, 0)
@@ -191,14 +191,14 @@ Partial Class MesaControl
         Me.TableLayoutPanel_Row1_Total.Name = "TableLayoutPanel_Row1_Total"
         Me.TableLayoutPanel_Row1_Total.RowCount = 1
         Me.TableLayoutPanel_Row1_Total.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel_Row1_Total.Size = New System.Drawing.Size(323, 48)
+        Me.TableLayoutPanel_Row1_Total.Size = New System.Drawing.Size(384, 48)
         Me.TableLayoutPanel_Row1_Total.TabIndex = 1
         '
         'LabelControl_NumeroMesa
         '
         Me.LabelControl_NumeroMesa.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.LabelControl_NumeroMesa.Appearance.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl_NumeroMesa.Location = New System.Drawing.Point(134, 11)
+        Me.LabelControl_NumeroMesa.Location = New System.Drawing.Point(189, 11)
         Me.LabelControl_NumeroMesa.Name = "LabelControl_NumeroMesa"
         Me.LabelControl_NumeroMesa.Size = New System.Drawing.Size(88, 25)
         Me.LabelControl_NumeroMesa.TabIndex = 0
@@ -208,7 +208,7 @@ Partial Class MesaControl
         '
         Me.LabelControl_Total.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.LabelControl_Total.Appearance.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl_Total.Location = New System.Drawing.Point(7, 11)
+        Me.LabelControl_Total.Location = New System.Drawing.Point(12, 11)
         Me.LabelControl_Total.Name = "LabelControl_Total"
         Me.LabelControl_Total.Size = New System.Drawing.Size(76, 25)
         Me.LabelControl_Total.TabIndex = 0
@@ -218,16 +218,16 @@ Partial Class MesaControl
         '
         Me.TextBox_NumeroMesa.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.TextBox_NumeroMesa.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_NumeroMesa.Location = New System.Drawing.Point(228, 7)
+        Me.TextBox_NumeroMesa.Location = New System.Drawing.Point(283, 7)
         Me.TextBox_NumeroMesa.Name = "TextBox_NumeroMesa"
-        Me.TextBox_NumeroMesa.Size = New System.Drawing.Size(92, 33)
+        Me.TextBox_NumeroMesa.Size = New System.Drawing.Size(70, 33)
         Me.TextBox_NumeroMesa.TabIndex = 3
         '
         'LabelControl_Suma
         '
         Me.LabelControl_Suma.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.LabelControl_Suma.Appearance.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl_Suma.Location = New System.Drawing.Point(89, 11)
+        Me.LabelControl_Suma.Location = New System.Drawing.Point(94, 11)
         Me.LabelControl_Suma.Name = "LabelControl_Suma"
         Me.LabelControl_Suma.Size = New System.Drawing.Size(13, 25)
         Me.LabelControl_Suma.TabIndex = 1
@@ -459,8 +459,8 @@ Partial Class MesaControl
     Friend WithEvents TableLayoutPanel_MesaRow1 As Windows.Forms.TableLayoutPanel
     Friend WithEvents TableLayoutPanel_Row1Buttons As Windows.Forms.TableLayoutPanel
     Friend WithEvents SimpleButton_Pagar As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton_Print As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton_Cocina As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton_Imprimir As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton_Guardar As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TableLayoutPanel_Row1_Total As Windows.Forms.TableLayoutPanel
     Friend WithEvents LabelControl_Total As DevExpress.XtraEditors.LabelControl

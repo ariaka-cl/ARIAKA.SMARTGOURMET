@@ -27,11 +27,9 @@ Partial Class ProductosMesaControl
         Me.GridColumn_Cantidad = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn_Precio = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn_Fecha = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DetalleMesaBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.GridControl_DetallesMesa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MesaDetalleDTOBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DetalleMesaBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridControl_DetallesMesa
@@ -59,21 +57,25 @@ Partial Class ProductosMesaControl
         'GridColumn_Producto
         '
         Me.GridColumn_Producto.Caption = "Producto"
-        Me.GridColumn_Producto.FieldName = "Producto"
+        Me.GridColumn_Producto.FieldName = "Producto.Nombre"
         Me.GridColumn_Producto.Name = "GridColumn_Producto"
         Me.GridColumn_Producto.Visible = True
-        Me.GridColumn_Producto.VisibleIndex = 0
+        Me.GridColumn_Producto.VisibleIndex = 1
         '
         'GridColumn_Cantidad
         '
         Me.GridColumn_Cantidad.Caption = "Cantidad"
+        Me.GridColumn_Cantidad.FieldName = "GridColumn_Cantidad"
         Me.GridColumn_Cantidad.Name = "GridColumn_Cantidad"
+        Me.GridColumn_Cantidad.UnboundExpression = "1"
+        Me.GridColumn_Cantidad.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn_Cantidad.Visible = True
-        Me.GridColumn_Cantidad.VisibleIndex = 1
+        Me.GridColumn_Cantidad.VisibleIndex = 0
         '
         'GridColumn_Precio
         '
         Me.GridColumn_Precio.Caption = "Precio"
+        Me.GridColumn_Precio.FieldName = "Producto.Precio"
         Me.GridColumn_Precio.Name = "GridColumn_Precio"
         Me.GridColumn_Precio.Visible = True
         Me.GridColumn_Precio.VisibleIndex = 2
@@ -88,10 +90,6 @@ Partial Class ProductosMesaControl
         Me.GridColumn_Fecha.Visible = True
         Me.GridColumn_Fecha.VisibleIndex = 3
         '
-        'DetalleMesaBindingSource
-        '
-        Me.DetalleMesaBindingSource.DataSource = GetType(ARIAKA.SMARTGOURMET.Win.Models.MesaDetalleDTO)
-        '
         'ProductosMesaControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -102,7 +100,6 @@ Partial Class ProductosMesaControl
         CType(Me.GridControl_DetallesMesa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MesaDetalleDTOBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DetalleMesaBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -113,6 +110,5 @@ Partial Class ProductosMesaControl
     Friend WithEvents GridColumn_Cantidad As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn_Precio As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn_Fecha As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents DetalleMesaBindingSource As Windows.Forms.BindingSource
     Friend WithEvents MesaDetalleDTOBindingSource As Windows.Forms.BindingSource
 End Class

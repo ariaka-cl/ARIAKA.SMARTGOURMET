@@ -6,6 +6,11 @@ Imports System.Data.Entity.Spatial
 
 <Table("bdSmartGourmet.Boleta")>
 Partial Public Class Boleta
+    'Public Sub New()
+    '    Mesa = New HashSet(Of Mesa)()
+    'End Sub
+
+    <Key>
     Public Property ID As Integer
 
     Public Property MesaID As Integer
@@ -23,5 +28,5 @@ Partial Public Class Boleta
     <Column(TypeName:="timestamp")>
     Public Property FechaCreacion As Date?
 
-    Public Overridable Property Mesa As Mesa
+    'Public Overridable Property Mesa As ICollection(Of Mesa)
 End Class

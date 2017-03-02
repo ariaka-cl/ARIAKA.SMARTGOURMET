@@ -6,6 +6,11 @@ Imports System.Data.Entity.Spatial
 
 <Table("bdSmartGourmet.User")>
 Partial Public Class User
+    'Public Sub New()
+    '    Mesa = New HashSet(Of Mesa)()
+    'End Sub
+
+    <Key>
     Public Property ID As Integer
 
     <Required>
@@ -28,7 +33,7 @@ Partial Public Class User
 
     Public Property RolID As Integer
 
-    Public Overridable Property Mesa As Mesa
-
     Public Overridable Property Rol As Rol
+    'Public Overridable Property Mesa As ICollection(Of Mesa)
+
 End Class

@@ -101,7 +101,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.vb" />
+    <Compile Include="Logica\Cliente.vb" />
     <Compile Include="Controls\MesaControl.Designer.vb">
       <DependentUpon>MesaControl.vb</DependentUpon>
     </Compile>
@@ -132,10 +132,13 @@
     <Compile Include="Forms\MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Logica\CrearTicket.vb" />
+    <Compile Include="Logica\Imprimir.vb" />
     <Compile Include="Models\BoletaDTO.vb" />
     <Compile Include="Models\CategoriaDTO.vb" />
     <Compile Include="Models\MesaDetalleDTO.vb" />
     <Compile Include="Models\MesaDTO.vb" />
+    <Compile Include="Models\MesaEstado.vb" />
     <Compile Include="Models\ProductosDTO.vb" />
     <Compile Include="Models\UserDTO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -196,7 +199,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\logo-ariaka-small.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ARIAKA.SMARTGOURMET.Data\ARIAKA.SMARTGOURMET.Data.vbproj">
       <Project>{2f55d9ef-0882-4ad9-a9c7-c0889028aac1}</Project>

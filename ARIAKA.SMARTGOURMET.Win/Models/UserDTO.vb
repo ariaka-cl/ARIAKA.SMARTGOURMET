@@ -7,7 +7,6 @@ Namespace Models
         Public Property Password As String
         Public Property FechaCreacion As Date?
         Public Property RolID As Integer
-        Public Overridable Property Mesa As MesaDTO
         Public Overridable Property Rol As String
     End Class
 End Namespace

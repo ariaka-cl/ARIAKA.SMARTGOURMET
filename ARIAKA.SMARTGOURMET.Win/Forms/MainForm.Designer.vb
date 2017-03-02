@@ -33,9 +33,11 @@ Namespace Forms
             Me.TableLayoutPanel_Dash = New System.Windows.Forms.TableLayoutPanel()
             Me.TableLayoutPanel_Header = New System.Windows.Forms.TableLayoutPanel()
             Me.SimpleButton_AddTable = New DevExpress.XtraEditors.SimpleButton()
+            Me.PictureBox1 = New System.Windows.Forms.PictureBox()
             Me.TableLayoutPanel_Main.SuspendLayout()
             Me.TableLayoutPanel1.SuspendLayout()
             Me.TableLayoutPanel_Header.SuspendLayout()
+            CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'TableLayoutPanel_Main
@@ -47,6 +49,7 @@ Namespace Forms
             Me.TableLayoutPanel_Main.Controls.Add(Me.TableLayoutPanel1, 0, 1)
             Me.TableLayoutPanel_Main.Controls.Add(Me.TableLayoutPanel_Dash, 1, 1)
             Me.TableLayoutPanel_Main.Controls.Add(Me.TableLayoutPanel_Header, 1, 0)
+            Me.TableLayoutPanel_Main.Controls.Add(Me.PictureBox1, 0, 0)
             Me.TableLayoutPanel_Main.Dock = System.Windows.Forms.DockStyle.Fill
             Me.TableLayoutPanel_Main.Location = New System.Drawing.Point(0, 0)
             Me.TableLayoutPanel_Main.Name = "TableLayoutPanel_Main"
@@ -173,6 +176,17 @@ Namespace Forms
             Me.SimpleButton_AddTable.TabIndex = 0
             Me.SimpleButton_AddTable.Text = "Mesa"
             '
+            'PictureBox1
+            '
+            Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+            Me.PictureBox1.Location = New System.Drawing.Point(3, 3)
+            Me.PictureBox1.Name = "PictureBox1"
+            Me.PictureBox1.Size = New System.Drawing.Size(198, 109)
+            Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+            Me.PictureBox1.TabIndex = 3
+            Me.PictureBox1.TabStop = False
+            '
             'MainForm
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -185,6 +199,7 @@ Namespace Forms
             Me.TableLayoutPanel_Main.ResumeLayout(False)
             Me.TableLayoutPanel1.ResumeLayout(False)
             Me.TableLayoutPanel_Header.ResumeLayout(False)
+            CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
@@ -199,5 +214,6 @@ Namespace Forms
         Friend WithEvents TableLayoutPanel_Dash As Windows.Forms.TableLayoutPanel
         Friend WithEvents TableLayoutPanel_Header As Windows.Forms.TableLayoutPanel
         Friend WithEvents SimpleButton_AddTable As DevExpress.XtraEditors.SimpleButton
+        Friend WithEvents PictureBox1 As Windows.Forms.PictureBox
     End Class
 End Namespace
