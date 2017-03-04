@@ -10,6 +10,7 @@ Partial Public Class Rol
         Users = New HashSet(Of User)()
     End Sub
 
+    <Key>
     Public Property ID As Integer
 
     <Required>
