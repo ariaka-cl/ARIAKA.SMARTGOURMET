@@ -2,13 +2,11 @@
 Namespace Logica
     Public Class Cliente
 
-        Public Function GuardarMesa(mesaModel As Models.MesaDTO) As Integer
-            Dim db As New Data.SGContext
+        Public Function GuardarMesa(mesaModel As Models.MesaDTO) As Models.MesaDTO
+            Dim db As New SGContext
             Try
 
                 Dim user As User = db.Users.Where(Function(u) u.ID = mesaModel.UsuarioID).SingleOrDefault()
-                'Preguntar si existe mesa, comprobar que no se repitan los productos en las listas.
-
                 Dim mesa As New Mesa With {.Numero = mesaModel.Numero,
                                            .UsuarioID = mesaModel.UsuarioID,
                                            .FechaCreacion = mesaModel.FechaCreacion,
@@ -24,14 +22,38 @@ Namespace Logica
                     db.MesaDetalles.Add(detalleBD)
                 Next
                 db.SaveChanges()
-                Return mesa.ID
+
+                Dim listMesaDetalle As List(Of Data.MesaDetalle) = db.MesaDetalles.Where(Function(md) md.MesaID = mesaModel.ID).ToList()
+                Dim listProducts As List(Of Producto) = db.Productoes.ToList()
+                Dim listCate As List(Of Categoria) = db.Categorias.ToList()
+                Dim listMesaDetalleDto As New List(Of Models.MesaDetalleDTO)
+                For Each mdetalle As Data.MesaDetalle In listMesaDetalle
+                    Dim prod As New Models.ProductosDTO With {.Id = mdetalle.ProductoID,
+                        .Nombre = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Nombre).SingleOrDefault(),
+                        .Precio = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Precio).SingleOrDefault(),
+                        .ProducCodigo = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.ProductoCodigo).SingleOrDefault(),
+                        .Stock = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Stock).SingleOrDefault(),
+                        .CategoriaID = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.CategoriaID).SingleOrDefault(),
+                        .Categoria = New Models.CategoriaDTO With {.ID = mdetalle.Producto.CategoriaID,
+                                                             .Nombre = listCate.Where(Function(c) c.ID = mdetalle.Producto.CategoriaID) _
+                                                             .Select(Function(c) c.Nombre).SingleOrDefault()}}
+
+                    listMesaDetalleDto.Add(New Models.MesaDetalleDTO With {.ID = mdetalle.ID,
+                                                                           .MesaID = mdetalle.MesaID,
+                                                                           .EstadoImpreso = mdetalle.EstadoImpreso,
+                                                                           .FechaPedido = mdetalle.FechaPedido,
+                                                                           .ProductoID = mdetalle.ProductoID,
+                                                                           .Producto = prod})
+                Next
+                mesaModel.MesaDetalles = listMesaDetalleDto
+                Return mesaModel
             Catch ex As Exception
-                Return 0
+                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Agregar Productos")
+                Return New Models.MesaDTO
             Finally
                 db.Dispose()
             End Try
         End Function
-
         Public Function SaberEstadoMesa(numero As String) As Models.MesaEstado
             Dim db As New Data.SGContext
             Try
@@ -84,7 +106,7 @@ Namespace Logica
             End Try
         End Function
 
-        Public Function GuardarDetalleMesa(mesaDetalles As List(Of Models.MesaDetalleDTO), mesaID As Integer) As Boolean
+        Public Function GuardarDetalleMesa(mesaDetalles As List(Of Models.MesaDetalleDTO), mesaID As Integer) As List(Of Models.MesaDetalleDTO)
             Dim db As New SGContext
             Try
                 For Each detalle As Models.MesaDetalleDTO In mesaDetalles
@@ -93,10 +115,31 @@ Namespace Logica
                     db.MesaDetalles.Add(detalleBD)
                 Next
                 db.SaveChanges()
-                Return True
+                Dim listMesaDetalle As List(Of Data.MesaDetalle) = db.MesaDetalles.Where(Function(md) md.MesaID = mesaID).ToList()
+                Dim listProducts As List(Of Producto) = db.Productoes.ToList()
+                Dim listCate As List(Of Categoria) = db.Categorias.ToList()
+                Dim listMesaDetalleDto As New List(Of Models.MesaDetalleDTO)
+                For Each mdetalle As Data.MesaDetalle In listMesaDetalle
+                    Dim prod As New Models.ProductosDTO With {.Id = mdetalle.ProductoID,
+                        .Nombre = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Nombre).SingleOrDefault(),
+                        .Precio = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Precio).SingleOrDefault(),
+                        .ProducCodigo = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.ProductoCodigo).SingleOrDefault(),
+                        .Stock = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Stock).SingleOrDefault(),
+                        .CategoriaID = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.CategoriaID).SingleOrDefault(),
+                        .Categoria = New Models.CategoriaDTO With {.ID = mdetalle.Producto.CategoriaID,
+                                                             .Nombre = listCate.Where(Function(c) c.ID = mdetalle.Producto.CategoriaID) _
+                                                             .Select(Function(c) c.Nombre).SingleOrDefault()}}
+                    listMesaDetalleDto.Add(New Models.MesaDetalleDTO With {.ID = mdetalle.ID,
+                                                                           .MesaID = mdetalle.MesaID,
+                                                                           .EstadoImpreso = mdetalle.EstadoImpreso,
+                                                                           .FechaPedido = mdetalle.FechaPedido,
+                                                                           .ProductoID = mdetalle.ProductoID,
+                                                                           .Producto = prod})
+                Next
+                Return listMesaDetalleDto
             Catch ex As Exception
                 Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Agregar Productos")
-                Return False
+                Return New List(Of Models.MesaDetalleDTO)
             Finally
                 db.Dispose()
             End Try
@@ -116,7 +159,24 @@ Namespace Logica
                 db.Dispose()
             End Try
         End Function
-
+        Public Function GetGarzones() As List(Of Models.UserDTO)
+            Dim db As New SGContext
+            Try
+                Dim listUser As List(Of User) = db.Users.Where(Function(u) u.RolID = 2).ToList()
+                Dim listUserDto As New List(Of Models.UserDTO)
+                For Each usuario As User In listUser
+                    listUserDto.Add(New Models.UserDTO With {.ID = usuario.ID,
+                                                             .Nombre = usuario.Nombre,
+                                                             .RolID = usuario.RolID})
+                Next
+                Return listUserDto
+            Catch ex As Exception
+                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Usuarios")
+                Return New List(Of Models.UserDTO)
+            Finally
+                db.Dispose()
+            End Try
+        End Function
 
     End Class
 End Namespace
