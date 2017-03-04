@@ -4,6 +4,7 @@ Namespace Models
         Public Property Numero As String
         Public Property FechaCreacion As Date?
         Public Property Estado As MesaEstado?
+        Public Property Notas As String
         Public Property UsuarioID As Integer?
         Public Property Usuario As UserDTO
         Public Property MesaDetalles As List(Of MesaDetalleDTO)

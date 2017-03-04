@@ -3,7 +3,7 @@
 Public Class MesaControl
 
     Private Property _cliente As New Logica.Cliente
-    Private Property _total As String
+    Private Property _mesaID As Integer
 
     Private Sub Mesa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PopulateGarzon()
@@ -43,20 +43,57 @@ Public Class MesaControl
     End Sub
 
     Private Sub SimpleButton_Guardar_Click(sender As Object, e As EventArgs) Handles SimpleButton_Guardar.Click
-        If String.IsNullOrEmpty(Me.TextBox_NumeroMesa.Text.ToString()) Then
+        If String.IsNullOrEmpty(Me.TextBox_NumeroMesa.Text) Then
             MessageBox.Show("Debe ingresar un numero para la mesa.")
             Return
         End If
 
-        Dim mesa As New Models.MesaDTO With {.Numero = Me.TextBox_NumeroMesa.Text,
+        If _mesaID <> 0 Then
+
+            Dim lisDetalle As List(Of Models.MesaDetalleDTO) = TryCast(ProductosMesaControl1.GridView1.DataSource, BindingSource) _
+                                                                .Cast(Of Models.MesaDetalleDTO).ToList()
+            Dim listDetalleNuevo As List(Of Models.MesaDetalleDTO) = lisDetalle.Where(Function(m) m.MesaID = 0).ToList()
+
+            If listDetalleNuevo Is Nothing OrElse listDetalleNuevo.Count = 0 Then
+                MessageBox.Show("No hay datos para guardar", "Guardar Mesa")
+                Return
+            End If
+
+
+            If _cliente.GuardarDetalleMesa(listDetalleNuevo, _mesaID) Then
+
+                Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Clear()
+                For i As Integer = 0 To lisDetalle.Count - 1
+                    If lisDetalle.Item(i).MesaID = 0 Then
+                        lisDetalle.Item(i).MesaID = _mesaID
+                    End If
+                    Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Add(lisDetalle.Item(i))
+                Next
+                Me.ProductosMesaControl1.GridView1.RefreshEditor(True)
+            End If
+
+        Else
+            Dim mesa As New Models.MesaDTO With {.Numero = Me.TextBox_NumeroMesa.Text,
                                              .Estado = Models.MesaEstado.Ocupada,
                                              .UsuarioID = CType(ComboBox_Garzones.SelectedItem, Models.UserDTO).ID,
-                                             .FechaCreacion = Date.Now}
+                                             .FechaCreacion = Me.DateTimePicker_Fecha.Value,
+                                             .Notas = Me.RichTextBox_Comentarios.Text}
 
-        Dim lisDetalle As List(Of Models.MesaDetalleDTO) = TryCast(ProductosMesaControl1.GridView1.DataSource, BindingSource) _
-                                                            .Cast(Of Models.MesaDetalleDTO).ToList()
-        mesa.MesaDetalles = lisDetalle
-        _cliente.GuardarMesa(mesa)
+            Dim lisDetalle As List(Of Models.MesaDetalleDTO) = TryCast(ProductosMesaControl1.GridView1.DataSource, BindingSource) _
+                                                                .Cast(Of Models.MesaDetalleDTO).ToList()
+            mesa.MesaDetalles = lisDetalle
+            _mesaID = _cliente.GuardarMesa(mesa)
+
+            Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Clear()
+            For i As Integer = 0 To lisDetalle.Count - 1
+                lisDetalle.Item(i).MesaID = _mesaID
+                Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Add(lisDetalle.Item(i))
+            Next
+            Me.ProductosMesaControl1.GridView1.RefreshEditor(True)
+
+        End If
+
+        MessageBox.Show("Se guardaron con éxito los registros", "Guardar Mesa", MessageBoxButtons.OK)
 
     End Sub
 
@@ -79,5 +116,19 @@ Public Class MesaControl
         Dim totalInt As Integer = CInt(total)
         totalInt = precio + totalInt
         LabelControl_Suma.Text = totalInt.ToString()
+    End Sub
+
+    Private Sub SimpleButton_Minus_Click(sender As Object, e As EventArgs) Handles SimpleButton_Minus.Click
+        If _mesaID <> 0 Then
+            Dim id As Integer = CType(ProductosMesaControl1.MesaDetalleDTOBindingSource.Current, Models.MesaDetalleDTO).ID
+            If id <> 0 Then
+                _cliente.EliminarDetalleMesa(id)
+            Else
+                ProductosMesaControl1.GridView1.DeleteRow(ProductosMesaControl1.GridView1.FocusedRowHandle)
+            End If
+        Else
+            ProductosMesaControl1.GridView1.DeleteRow(ProductosMesaControl1.GridView1.FocusedRowHandle)
+        End If
+        Me.ProductosMesaControl1.GridView1.RefreshEditor(True)
     End Sub
 End Class

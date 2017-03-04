@@ -1,13 +1,11 @@
 ﻿Namespace Forms
     Public Class MainForm
         Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-            Me.TableLayoutPanel_Dash.Visible = False
             Me.SimpleButton_AddTable.Visible = False
         End Sub
 
         Private Sub SimpleButton_Mesas_Click(sender As Object, e As EventArgs) Handles SimpleButton_Mesas.Click
             Me.SimpleButton_AddTable.Visible = True
-            Me.TableLayoutPanel_Dash.Visible = True
             Me.TableLayoutPanel_Dash.Controls.Clear()
             Dim resumenMesaView As New Controls.ResumenMesaViewControl With {.Dock = Windows.Forms.DockStyle.Fill}
             Me.TableLayoutPanel_Dash.Controls.Add(resumenMesaView, 0, 0)

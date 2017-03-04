@@ -25,7 +25,7 @@ Namespace Forms
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
             Me.DefaultLookAndFeel_Main = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
             Me.TableLayoutPanel_Main = New System.Windows.Forms.TableLayoutPanel()
-            Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+            Me.TableLayoutPanel_LeftMenu = New System.Windows.Forms.TableLayoutPanel()
             Me.SimpleButton_Mesas = New DevExpress.XtraEditors.SimpleButton()
             Me.SimpleButton_Productos = New DevExpress.XtraEditors.SimpleButton()
             Me.SimpleButton_Categorias = New DevExpress.XtraEditors.SimpleButton()
@@ -34,10 +34,13 @@ Namespace Forms
             Me.TableLayoutPanel_Header = New System.Windows.Forms.TableLayoutPanel()
             Me.SimpleButton_AddTable = New DevExpress.XtraEditors.SimpleButton()
             Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+            Me.PictureBox_HomeImage = New System.Windows.Forms.PictureBox()
             Me.TableLayoutPanel_Main.SuspendLayout()
-            Me.TableLayoutPanel1.SuspendLayout()
+            Me.TableLayoutPanel_LeftMenu.SuspendLayout()
+            Me.TableLayoutPanel_Dash.SuspendLayout()
             Me.TableLayoutPanel_Header.SuspendLayout()
             CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.PictureBox_HomeImage, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'TableLayoutPanel_Main
@@ -46,7 +49,7 @@ Namespace Forms
             Me.TableLayoutPanel_Main.ColumnCount = 2
             Me.TableLayoutPanel_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.4605!))
             Me.TableLayoutPanel_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.5395!))
-            Me.TableLayoutPanel_Main.Controls.Add(Me.TableLayoutPanel1, 0, 1)
+            Me.TableLayoutPanel_Main.Controls.Add(Me.TableLayoutPanel_LeftMenu, 0, 1)
             Me.TableLayoutPanel_Main.Controls.Add(Me.TableLayoutPanel_Dash, 1, 1)
             Me.TableLayoutPanel_Main.Controls.Add(Me.TableLayoutPanel_Header, 1, 0)
             Me.TableLayoutPanel_Main.Controls.Add(Me.PictureBox1, 0, 0)
@@ -59,23 +62,23 @@ Namespace Forms
             Me.TableLayoutPanel_Main.Size = New System.Drawing.Size(1053, 651)
             Me.TableLayoutPanel_Main.TabIndex = 0
             '
-            'TableLayoutPanel1
+            'TableLayoutPanel_LeftMenu
             '
-            Me.TableLayoutPanel1.ColumnCount = 1
-            Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-            Me.TableLayoutPanel1.Controls.Add(Me.SimpleButton_Mesas, 0, 0)
-            Me.TableLayoutPanel1.Controls.Add(Me.SimpleButton_Productos, 0, 1)
-            Me.TableLayoutPanel1.Controls.Add(Me.SimpleButton_Categorias, 0, 2)
-            Me.TableLayoutPanel1.Controls.Add(Me.SimpleButton_Usuarios, 0, 3)
-            Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 118)
-            Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-            Me.TableLayoutPanel1.RowCount = 4
-            Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-            Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-            Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-            Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-            Me.TableLayoutPanel1.Size = New System.Drawing.Size(195, 313)
-            Me.TableLayoutPanel1.TabIndex = 0
+            Me.TableLayoutPanel_LeftMenu.ColumnCount = 1
+            Me.TableLayoutPanel_LeftMenu.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+            Me.TableLayoutPanel_LeftMenu.Controls.Add(Me.SimpleButton_Mesas, 0, 0)
+            Me.TableLayoutPanel_LeftMenu.Controls.Add(Me.SimpleButton_Productos, 0, 1)
+            Me.TableLayoutPanel_LeftMenu.Controls.Add(Me.SimpleButton_Categorias, 0, 2)
+            Me.TableLayoutPanel_LeftMenu.Controls.Add(Me.SimpleButton_Usuarios, 0, 3)
+            Me.TableLayoutPanel_LeftMenu.Location = New System.Drawing.Point(3, 118)
+            Me.TableLayoutPanel_LeftMenu.Name = "TableLayoutPanel_LeftMenu"
+            Me.TableLayoutPanel_LeftMenu.RowCount = 4
+            Me.TableLayoutPanel_LeftMenu.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+            Me.TableLayoutPanel_LeftMenu.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+            Me.TableLayoutPanel_LeftMenu.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+            Me.TableLayoutPanel_LeftMenu.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+            Me.TableLayoutPanel_LeftMenu.Size = New System.Drawing.Size(195, 313)
+            Me.TableLayoutPanel_LeftMenu.TabIndex = 0
             '
             'SimpleButton_Mesas
             '
@@ -83,6 +86,8 @@ Namespace Forms
             Me.SimpleButton_Mesas.Appearance.Options.UseFont = True
             Me.SimpleButton_Mesas.AppearanceHovered.BackColor = System.Drawing.SystemColors.ActiveCaption
             Me.SimpleButton_Mesas.AppearanceHovered.Options.UseBackColor = True
+            Me.SimpleButton_Mesas.AutoSize = True
+            Me.SimpleButton_Mesas.AutoWidthInLayoutControl = True
             Me.SimpleButton_Mesas.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
             Me.SimpleButton_Mesas.Dock = System.Windows.Forms.DockStyle.Fill
             Me.SimpleButton_Mesas.Image = CType(resources.GetObject("SimpleButton_Mesas.Image"), System.Drawing.Image)
@@ -97,6 +102,8 @@ Namespace Forms
             '
             Me.SimpleButton_Productos.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.SimpleButton_Productos.Appearance.Options.UseFont = True
+            Me.SimpleButton_Productos.AutoSize = True
+            Me.SimpleButton_Productos.AutoWidthInLayoutControl = True
             Me.SimpleButton_Productos.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
             Me.SimpleButton_Productos.Dock = System.Windows.Forms.DockStyle.Fill
             Me.SimpleButton_Productos.Image = CType(resources.GetObject("SimpleButton_Productos.Image"), System.Drawing.Image)
@@ -137,9 +144,11 @@ Namespace Forms
             '
             'TableLayoutPanel_Dash
             '
+            Me.TableLayoutPanel_Dash.AutoSize = True
             Me.TableLayoutPanel_Dash.BackColor = System.Drawing.SystemColors.Control
             Me.TableLayoutPanel_Dash.ColumnCount = 1
             Me.TableLayoutPanel_Dash.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+            Me.TableLayoutPanel_Dash.Controls.Add(Me.PictureBox_HomeImage, 0, 0)
             Me.TableLayoutPanel_Dash.Dock = System.Windows.Forms.DockStyle.Fill
             Me.TableLayoutPanel_Dash.Location = New System.Drawing.Point(207, 118)
             Me.TableLayoutPanel_Dash.Name = "TableLayoutPanel_Dash"
@@ -187,6 +196,17 @@ Namespace Forms
             Me.PictureBox1.TabIndex = 3
             Me.PictureBox1.TabStop = False
             '
+            'PictureBox_HomeImage
+            '
+            Me.PictureBox_HomeImage.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.PictureBox_HomeImage.Image = CType(resources.GetObject("PictureBox_HomeImage.Image"), System.Drawing.Image)
+            Me.PictureBox_HomeImage.Location = New System.Drawing.Point(3, 3)
+            Me.PictureBox_HomeImage.Name = "PictureBox_HomeImage"
+            Me.PictureBox_HomeImage.Size = New System.Drawing.Size(837, 524)
+            Me.PictureBox_HomeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+            Me.PictureBox_HomeImage.TabIndex = 0
+            Me.PictureBox_HomeImage.TabStop = False
+            '
             'MainForm
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -197,16 +217,20 @@ Namespace Forms
             Me.Name = "MainForm"
             Me.Text = "Smart Gourtmet"
             Me.TableLayoutPanel_Main.ResumeLayout(False)
-            Me.TableLayoutPanel1.ResumeLayout(False)
+            Me.TableLayoutPanel_Main.PerformLayout()
+            Me.TableLayoutPanel_LeftMenu.ResumeLayout(False)
+            Me.TableLayoutPanel_LeftMenu.PerformLayout()
+            Me.TableLayoutPanel_Dash.ResumeLayout(False)
             Me.TableLayoutPanel_Header.ResumeLayout(False)
             CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.PictureBox_HomeImage, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
 
         Friend WithEvents DefaultLookAndFeel_Main As DevExpress.LookAndFeel.DefaultLookAndFeel
         Friend WithEvents TableLayoutPanel_Main As Windows.Forms.TableLayoutPanel
-        Friend WithEvents TableLayoutPanel1 As Windows.Forms.TableLayoutPanel
+        Friend WithEvents TableLayoutPanel_LeftMenu As Windows.Forms.TableLayoutPanel
         Friend WithEvents SimpleButton_Mesas As DevExpress.XtraEditors.SimpleButton
         Friend WithEvents SimpleButton_Productos As DevExpress.XtraEditors.SimpleButton
         Friend WithEvents SimpleButton_Categorias As DevExpress.XtraEditors.SimpleButton
@@ -215,5 +239,6 @@ Namespace Forms
         Friend WithEvents TableLayoutPanel_Header As Windows.Forms.TableLayoutPanel
         Friend WithEvents SimpleButton_AddTable As DevExpress.XtraEditors.SimpleButton
         Friend WithEvents PictureBox1 As Windows.Forms.PictureBox
+        Friend WithEvents PictureBox_HomeImage As Windows.Forms.PictureBox
     End Class
 End Namespace

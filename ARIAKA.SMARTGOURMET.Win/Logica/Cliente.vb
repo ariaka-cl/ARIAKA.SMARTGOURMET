@@ -2,15 +2,18 @@
 Namespace Logica
     Public Class Cliente
 
-        Public Function GuardarMesa(mesaModel As Models.MesaDTO) As Boolean
+        Public Function GuardarMesa(mesaModel As Models.MesaDTO) As Integer
             Dim db As New Data.SGContext
             Try
 
                 Dim user As User = db.Users.Where(Function(u) u.ID = mesaModel.UsuarioID).SingleOrDefault()
                 'Preguntar si existe mesa, comprobar que no se repitan los productos en las listas.
 
-                Dim mesa As New Mesa With {.Numero = mesaModel.Numero, .UsuarioID = mesaModel.UsuarioID,
-                    .FechaCreacion = Date.Now(), .Estado = Models.MesaEstado.Ocupada}
+                Dim mesa As New Mesa With {.Numero = mesaModel.Numero,
+                                           .UsuarioID = mesaModel.UsuarioID,
+                                           .FechaCreacion = mesaModel.FechaCreacion,
+                                           .Estado = Models.MesaEstado.Ocupada,
+                                           .Notas = mesaModel.Notas}
                 db.Mesas.Add(mesa)
                 db.SaveChanges()
                 mesaModel.ID = mesa.ID
@@ -21,9 +24,9 @@ Namespace Logica
                     db.MesaDetalles.Add(detalleBD)
                 Next
                 db.SaveChanges()
-                Return True
+                Return mesa.ID
             Catch ex As Exception
-                Return False
+                Return 0
             Finally
                 db.Dispose()
             End Try
@@ -75,9 +78,45 @@ Namespace Logica
                 Return listProductosDto
             Catch ex As Exception
                 Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error lista productos")
+                Return New List(Of Models.ProductosDTO)
             Finally
                 db.Dispose()
             End Try
         End Function
+
+        Public Function GuardarDetalleMesa(mesaDetalles As List(Of Models.MesaDetalleDTO), mesaID As Integer) As Boolean
+            Dim db As New SGContext
+            Try
+                For Each detalle As Models.MesaDetalleDTO In mesaDetalles
+                    Dim detalleBD As New MesaDetalle With {.MesaID = mesaID, .ProductoID = detalle.ProductoID, .EstadoImpreso = 0,
+                                                            .FechaPedido = detalle.FechaPedido}
+                    db.MesaDetalles.Add(detalleBD)
+                Next
+                db.SaveChanges()
+                Return True
+            Catch ex As Exception
+                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Agregar Productos")
+                Return False
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+        Public Function EliminarDetalleMesa(id As Integer) As Boolean
+            Dim db As New SGContext
+            Try
+                Dim detalle As MesaDetalle = db.MesaDetalles.Where(Function(md) md.ID = id).SingleOrDefault()
+                db.MesaDetalles.Remove(detalle)
+                db.SaveChanges()
+                Return True
+            Catch ex As Exception
+                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Eliminar Detalle")
+                Return False
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+
     End Class
 End Namespace

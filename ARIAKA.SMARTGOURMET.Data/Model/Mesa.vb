@@ -16,7 +16,7 @@ Partial Public Class Mesa
     Public Property FechaCreacion As Date?
 
     Public Property Estado As Integer?
-
+    Public Property Notas As String
     Public Property UsuarioID As Integer?
 
 End Class
