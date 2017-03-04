@@ -132,8 +132,6 @@
     <Compile Include="Forms\MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\CrearTicket.vb" />
-    <Compile Include="Logica\Imprimir.vb" />
     <Compile Include="Models\BoletaDTO.vb" />
     <Compile Include="Models\CategoriaDTO.vb" />
     <Compile Include="Models\MesaDetalleDTO.vb" />
