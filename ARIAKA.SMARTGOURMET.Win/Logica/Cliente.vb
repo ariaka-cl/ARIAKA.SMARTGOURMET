@@ -214,5 +214,23 @@ Namespace Logica
 
         End Function
 
+        Public Function PagarMesa(mesaID As Integer) As Boolean
+            Dim db As New SGContext
+            Try
+                Dim mesaPagar As Mesa = db.Mesas.Where(Function(m) m.ID = mesaID AndAlso m.Estado = Models.MesaEstado.Impresa).SingleOrDefault()
+                If mesaPagar IsNot Nothing Then
+                    mesaPagar.Estado = Models.MesaEstado.Pagada
+                    db.SaveChanges()
+                    Return True
+                End If
+                Return False
+            Catch ex As Exception
+                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Pagando Mesa")
+                Return False
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
     End Class
 End Namespace

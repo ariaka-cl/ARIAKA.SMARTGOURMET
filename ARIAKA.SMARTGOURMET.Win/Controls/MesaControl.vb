@@ -156,4 +156,20 @@ Public Class MesaControl
         total = total + CInt(propina)
         Return total.ToString()
     End Function
+
+    Private Sub SimpleButton_Pagar_Click(sender As Object, e As EventArgs) Handles SimpleButton_Pagar.Click
+        If _mesaID = 0 Then
+            MessageBox.Show("No existe mesa para pagar", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim result As DialogResult = MessageBox.Show("Esta Seguro que desea Pagar", "Pagar Mesa", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            If _cliente.PagarMesa(_mesaID) Then
+                MessageBox.Show("La mesa se pago con éxito", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+            MessageBox.Show("No se pudo pagar la mesa", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
 End Class
