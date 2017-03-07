@@ -65,7 +65,7 @@ Partial Class ProductosMesaControl
         'GridColumn_Cantidad
         '
         Me.GridColumn_Cantidad.Caption = "Cantidad"
-        Me.GridColumn_Cantidad.FieldName = "GridColumn_Cantidad"
+        Me.GridColumn_Cantidad.FieldName = "Producto.Categoria"
         Me.GridColumn_Cantidad.Name = "GridColumn_Cantidad"
         Me.GridColumn_Cantidad.UnboundExpression = "1"
         Me.GridColumn_Cantidad.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]

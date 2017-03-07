@@ -1,4 +1,6 @@
 ﻿Imports System.Windows.Forms
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
 
 Public Class MesaControl
 
@@ -127,4 +129,31 @@ Public Class MesaControl
         RestarTotal(detalleMesaDto.Producto.Precio)
         Me.ProductosMesaControl1.GridView1.RefreshEditor(True)
     End Sub
+
+    Private Sub SimpleButton_Print_Click(sender As Object, e As EventArgs) Handles SimpleButton_Print.Click
+        Dim report As New PDF.BoletaReport() With {.ShowPrintMarginsWarning = False, .ShowPrintStatusDialog = False}
+        report.ObjectDataSourceMesaDetalle.DataSource = _cliente.GetMesaDetalles(_mesaID)
+        report.XrTableCell_Total.Text = Me.LabelControl_Suma.Text
+        report.XrTableCell_Garzon.Text = CType(ComboBox_Garzones.SelectedItem, Models.UserDTO).Nombre
+        report.XrTableCell_Fecha.Text = Me.DateTimePicker_Fecha.Value.ToShortDateString()
+        report.XrTableCell_MesaNumero.Text = Me.TextBox_NumeroMesa.Text
+        report.XrTableCell_Propina.Text = CalculaPropina()
+        report.XrTableCell_TotalAll_Value.Text = SumaPropinaTotal(CalculaPropina())
+
+        Using printingTool As New ReportPrintTool(report)
+            printingTool.Print(My.Settings.PrinterCaja)
+        End Using
+    End Sub
+
+    Private Function CalculaPropina() As String
+        Dim total As Integer = CInt(Me.LabelControl_Suma.Text)
+        Dim propina As Double = total * (10 / 100)
+        Dim propinaStr As String = propina.ToString()
+        Return propinaStr
+    End Function
+    Private Function SumaPropinaTotal(propina As String) As String
+        Dim total As Integer = CInt(Me.LabelControl_Suma.Text)
+        total = total + CInt(propina)
+        Return total.ToString()
+    End Function
 End Class
