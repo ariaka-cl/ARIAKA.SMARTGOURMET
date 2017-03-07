@@ -143,6 +143,13 @@ Public Class MesaControl
         Using printingTool As New ReportPrintTool(report)
             printingTool.Print(My.Settings.PrinterCaja)
         End Using
+        Dim boleta As New Models.BoletaDTO With {.MesaID = _mesaID,
+                                                  .Total = CInt(SumaPropinaTotal(CalculaPropina())),
+                                                  .Propina = CInt(CalculaPropina()),
+                                                  .EstadoImpresa = Models.BoletaEstado.Impresa,
+                                                  .FechaCreacion = Me.DateTimePicker_Fecha.Value}
+        _cliente.CreacionBoleta(boleta)
+
     End Sub
 
     Private Function CalculaPropina() As String

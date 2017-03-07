@@ -1,4 +1,5 @@
-﻿Imports ARIAKA.SMARTGOURMET.Data
+﻿Imports System.Windows.Forms
+Imports ARIAKA.SMARTGOURMET.Data
 Namespace Logica
     Public Class Cliente
 
@@ -48,7 +49,7 @@ Namespace Logica
                 mesaModel.MesaDetalles = listMesaDetalleDto
                 Return mesaModel
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Agregar Productos")
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Agregar Productos", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return New Models.MesaDTO
             Finally
                 db.Dispose()
@@ -61,7 +62,7 @@ Namespace Logica
                 If mesaEstado Is Nothing Then Return 0
                 Return mesaEstado
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error: {0}", ex.Message), "Error Verificar Mesa")
+                MessageBox.Show(String.Format("Error: {0}", ex.Message), "Error Verificar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return 501
             Finally
                 db.Dispose()
@@ -81,7 +82,8 @@ Namespace Logica
                 Next
                 Return listMesaDTO
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error: {0}", ex.Message), "Error Resumen Mesas")
+                MessageBox.Show(String.Format("Error: {0}", ex.Message), "Error Resumen Mesas", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New List(Of Models.MesaDTO)
             Finally
                 db.Dispose()
             End Try
@@ -99,7 +101,7 @@ Namespace Logica
                 Next
                 Return listProductosDto
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error lista productos")
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error lista productos", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return New List(Of Models.ProductosDTO)
             Finally
                 db.Dispose()
@@ -138,7 +140,7 @@ Namespace Logica
                 Next
                 Return listMesaDetalleDto
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Agregar Productos")
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Agregar Productos", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return New List(Of Models.MesaDetalleDTO)
             Finally
                 db.Dispose()
@@ -153,7 +155,7 @@ Namespace Logica
                 db.SaveChanges()
                 Return True
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Eliminar Detalle")
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Eliminar Detalle", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             Finally
                 db.Dispose()
@@ -171,7 +173,7 @@ Namespace Logica
                 Next
                 Return listUserDto
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Usuarios")
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return New List(Of Models.UserDTO)
             Finally
                 db.Dispose()
@@ -206,7 +208,7 @@ Namespace Logica
 
                 Return listMesaDetalleDto
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtiene Detalle Mesa")
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtiene Detalle Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return New List(Of Models.MesaDetalleDTO)
             Finally
                 db.Dispose()
@@ -225,7 +227,27 @@ Namespace Logica
                 End If
                 Return False
             Catch ex As Exception
-                Windows.Forms.MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Pagando Mesa")
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Pagando Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+        Public Function CreacionBoleta(modelBoleta As Models.BoletaDTO) As Boolean
+            Dim db As New SGContext
+            Try
+                Dim mesaId As Integer = modelBoleta.MesaID
+                Dim mesaImpresa As Mesa = db.Mesas.Where(Function(m) m.ID = mesaId AndAlso m.Estado = Models.MesaEstado.Ocupada).SingleOrDefault()
+                If mesaImpresa IsNot Nothing Then
+                    mesaImpresa.Estado = Models.MesaEstado.Impresa
+                    db.SaveChanges()
+                    'TODO: crear la boleta y guardarla
+                    Return True
+                End If
+                Return False
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Creando Boleta", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             Finally
                 db.Dispose()
