@@ -145,15 +145,19 @@ Public Class MesaControl
         report.XrTableCell_Propina.Text = CalculaPropina()
         report.XrTableCell_TotalAll_Value.Text = SumaPropinaTotal(CalculaPropina())
 
-        'Using printingTool As New ReportPrintTool(report)
-        '    printingTool.Print(My.Settings.PrinterCaja)
-        'End Using
+        Using printingTool As New ReportPrintTool(report)
+            printingTool.Print(My.Settings.PrinterCaja)
+        End Using
+
         Dim boleta As New Models.BoletaDTO With {.MesaID = _mesaID,
                                                   .Total = CInt(SumaPropinaTotal(CalculaPropina())),
                                                   .Propina = CInt(CalculaPropina()),
                                                   .EstadoImpresa = Models.BoletaEstado.Impresa,
                                                   .FechaCreacion = Me.DateTimePicker_Fecha.Value}
-        _cliente.CreacionBoleta(boleta)
+        If _cliente.CreacionBoleta(boleta) Then
+            MessageBox.Show("Se  Imprimio Cuenta con Éxito", "Imprimir Cuenta", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
 
     End Sub
 
