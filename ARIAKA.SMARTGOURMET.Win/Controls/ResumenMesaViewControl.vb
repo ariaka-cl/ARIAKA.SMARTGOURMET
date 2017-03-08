@@ -12,7 +12,7 @@ Namespace Controls
             Dim row As Integer = 0
             Dim col As Integer = 0
             Dim count As Integer = 0
-            Dim listMesas As List(Of Models.MesaDTO) = _cliente.GetMesas()
+            Dim listMesas As List(Of Models.MesaDTO) = _cliente.GetMesas(Me.DateTimePicker1.Value.Date)
             If listMesas IsNot Nothing Then
 
                 Dim layout As New TableLayoutPanel With {.ColumnCount = 5,
@@ -36,6 +36,10 @@ Namespace Controls
                 Next
                 Me.TableLayoutPanel_ResumenContainer.Controls.Add(layout, 0, 1)
             End If
+        End Sub
+
+        Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
+            UpdateControls()
         End Sub
     End Class
 End Namespace

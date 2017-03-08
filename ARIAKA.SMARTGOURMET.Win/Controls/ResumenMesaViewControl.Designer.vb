@@ -27,6 +27,9 @@
             '
             'TableLayoutPanel_ResumenContainer
             '
+            Me.TableLayoutPanel_ResumenContainer.AutoScroll = True
+            Me.TableLayoutPanel_ResumenContainer.AutoSize = True
+            Me.TableLayoutPanel_ResumenContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
             Me.TableLayoutPanel_ResumenContainer.ColumnCount = 1
             Me.TableLayoutPanel_ResumenContainer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
             Me.TableLayoutPanel_ResumenContainer.Controls.Add(Me.DateTimePicker1, 0, 0)
@@ -59,6 +62,7 @@
             Me.Size = New System.Drawing.Size(675, 446)
             Me.TableLayoutPanel_ResumenContainer.ResumeLayout(False)
             Me.ResumeLayout(False)
+            Me.PerformLayout()
 
         End Sub
 

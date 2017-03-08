@@ -10,6 +10,12 @@ Public Class MesaControl
     Private Sub Mesa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PopulateGarzon()
         PopulateProductos()
+        If _mesaID <> 0 Then
+            PopulateMesa()
+        End If
+    End Sub
+    Private Sub PopulateMesa()
+
     End Sub
 
     Private Sub PopulateProductos()

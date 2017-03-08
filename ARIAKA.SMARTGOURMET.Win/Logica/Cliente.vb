@@ -55,6 +55,7 @@ Namespace Logica
                 db.Dispose()
             End Try
         End Function
+
         Public Function SaberEstadoMesa(numero As String) As Models.MesaEstado
             Dim db As New Data.SGContext
             Try
@@ -69,7 +70,7 @@ Namespace Logica
             End Try
         End Function
 
-        Public Function GetMesas() As List(Of Models.MesaDTO)
+        Public Function GetMesas(fecha As Date) As List(Of Models.MesaDTO)
             Dim db As New Data.SGContext
             Try
                 Dim listMesa As List(Of Mesa) = db.Mesas.Where(Function(m) m.Estado = Models.MesaEstado.Ocupada _
@@ -77,8 +78,10 @@ Namespace Logica
                 Dim listMesaDTO As New List(Of Models.MesaDTO)
                 If listMesa Is Nothing OrElse listMesa.Count = 0 Then Return listMesaDTO
                 For Each mesa As Mesa In listMesa
-                    listMesaDTO.Add(New Models.MesaDTO With {.ID = mesa.ID, .Estado = mesa.Estado, .FechaCreacion = mesa.FechaCreacion,
+                    If fecha.Date = mesa.FechaCreacion.Value.Date Then
+                        listMesaDTO.Add(New Models.MesaDTO With {.ID = mesa.ID, .Estado = mesa.Estado, .FechaCreacion = mesa.FechaCreacion,
                                                             .Numero = mesa.Numero, .UsuarioID = mesa.UsuarioID})
+                    End If
                 Next
                 Return listMesaDTO
             Catch ex As Exception
