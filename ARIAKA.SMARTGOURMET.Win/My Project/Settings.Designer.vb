@@ -53,6 +53,30 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("POS-80")>  _
+        Public Property PrinterCocina() As String
+            Get
+                Return CType(Me("PrinterCocina"),String)
+            End Get
+            Set
+                Me("PrinterCocina") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("POS-80")>  _
+        Public Property PrinterCaja() As String
+            Get
+                Return CType(Me("PrinterCaja"),String)
+            End Get
+            Set
+                Me("PrinterCaja") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

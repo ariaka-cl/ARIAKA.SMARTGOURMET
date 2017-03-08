@@ -1,4 +1,6 @@
 ﻿Imports System.Windows.Forms
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
 
 Public Class MesaControl
 
@@ -126,5 +128,86 @@ Public Class MesaControl
         ProductosMesaControl1.GridView1.DeleteRow(ProductosMesaControl1.GridView1.FocusedRowHandle)
         RestarTotal(detalleMesaDto.Producto.Precio)
         Me.ProductosMesaControl1.GridView1.RefreshEditor(True)
+    End Sub
+
+    Private Sub SimpleButton_Print_Click(sender As Object, e As EventArgs) Handles SimpleButton_Print.Click
+        If _mesaID = 0 Then
+            MessageBox.Show("No existe mesa creada aún", "Imprimir Boleta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim report As New PDF.BoletaReport() With {.ShowPrintMarginsWarning = False, .ShowPrintStatusDialog = False}
+        report.ObjectDataSourceMesaDetalle.DataSource = _cliente.GetMesaDetalles(_mesaID)
+        report.XrTableCell_Total.Text = Me.LabelControl_Suma.Text
+        report.XrTableCell_Garzon.Text = CType(ComboBox_Garzones.SelectedItem, Models.UserDTO).Nombre
+        report.XrTableCell_Hora_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortTimeString()
+        report.XrTableCell_Fecha_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortDateString()
+        report.XrTableCell_MesaNumero.Text = Me.TextBox_NumeroMesa.Text
+        report.XrTableCell_Propina.Text = CalculaPropina()
+        report.XrTableCell_TotalAll_Value.Text = SumaPropinaTotal(CalculaPropina())
+
+        Using printingTool As New ReportPrintTool(report)
+            printingTool.Print(My.Settings.PrinterCaja)
+        End Using
+
+        Dim boleta As New Models.BoletaDTO With {.MesaID = _mesaID,
+                                                  .Total = CInt(SumaPropinaTotal(CalculaPropina())),
+                                                  .Propina = CInt(CalculaPropina()),
+                                                  .EstadoImpresa = Models.BoletaEstado.Impresa,
+                                                  .FechaCreacion = Me.DateTimePicker_Fecha.Value}
+        If _cliente.CreacionBoleta(boleta) Then
+            MessageBox.Show("Se  Imprimio Cuenta con Éxito", "Imprimir Cuenta", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+    End Sub
+
+    Private Function CalculaPropina() As String
+        Dim total As Integer = CInt(Me.LabelControl_Suma.Text)
+        Dim propina As Double = total * (10 / 100)
+        Dim propinaStr As String = propina.ToString()
+        Return propinaStr
+    End Function
+    Private Function SumaPropinaTotal(propina As String) As String
+        Dim total As Integer = CInt(Me.LabelControl_Suma.Text)
+        total = total + CInt(propina)
+        Return total.ToString()
+    End Function
+
+    Private Sub SimpleButton_Pagar_Click(sender As Object, e As EventArgs) Handles SimpleButton_Pagar.Click
+        If _mesaID = 0 Then
+            MessageBox.Show("No existe mesa para pagar", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim result As DialogResult = MessageBox.Show("Esta Seguro que desea Pagar", "Pagar Mesa", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            If _cliente.PagarMesa(_mesaID) Then
+                MessageBox.Show("La mesa se pago con éxito", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+            MessageBox.Show("No se pudo pagar la mesa", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Private Sub SimpleButton_Cocina_Click(sender As Object, e As EventArgs) Handles SimpleButton_Cocina.Click
+        If _mesaID = 0 Then
+            MessageBox.Show("No existe mesa creada aún", "Imprimir Cocina", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim report As New PDF.CocinaReport() With {.ShowPrintMarginsWarning = False, .ShowPrintStatusDialog = False}
+        report.ObjectDataSourceMesaDetalle.DataSource = _cliente.GetProductosImprimir(_mesaID)
+        report.XrTableCell_Garzon.Text = CType(ComboBox_Garzones.SelectedItem, Models.UserDTO).Nombre
+        report.XrTableCell_Hora_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortTimeString()
+        report.XrTableCell_MesaNumero.Text = Me.TextBox_NumeroMesa.Text
+        report.XrTableCell_Fecha_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortDateString()
+        report.XrRichText_Observacion.Text = Me.RichTextBox_Comentarios.Text
+
+        Using printingTool As New ReportPrintTool(report)
+            printingTool.Print(My.Settings.PrinterCocina)
+        End Using
+
+        MessageBox.Show("Se  Imprimio en Cocina", "Imprimir Cocina", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class
