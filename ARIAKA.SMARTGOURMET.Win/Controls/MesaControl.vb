@@ -131,6 +131,11 @@ Public Class MesaControl
     End Sub
 
     Private Sub SimpleButton_Print_Click(sender As Object, e As EventArgs) Handles SimpleButton_Print.Click
+        If _mesaID = 0 Then
+            MessageBox.Show("No existe mesa creada aún", "Imprimir Boleta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Dim report As New PDF.BoletaReport() With {.ShowPrintMarginsWarning = False, .ShowPrintStatusDialog = False}
         report.ObjectDataSourceMesaDetalle.DataSource = _cliente.GetMesaDetalles(_mesaID)
         report.XrTableCell_Total.Text = Me.LabelControl_Suma.Text
@@ -140,9 +145,9 @@ Public Class MesaControl
         report.XrTableCell_Propina.Text = CalculaPropina()
         report.XrTableCell_TotalAll_Value.Text = SumaPropinaTotal(CalculaPropina())
 
-        Using printingTool As New ReportPrintTool(report)
-            printingTool.Print(My.Settings.PrinterCaja)
-        End Using
+        'Using printingTool As New ReportPrintTool(report)
+        '    printingTool.Print(My.Settings.PrinterCaja)
+        'End Using
         Dim boleta As New Models.BoletaDTO With {.MesaID = _mesaID,
                                                   .Total = CInt(SumaPropinaTotal(CalculaPropina())),
                                                   .Propina = CInt(CalculaPropina()),

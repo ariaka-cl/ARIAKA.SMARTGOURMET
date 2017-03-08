@@ -242,7 +242,14 @@ Namespace Logica
                 If mesaImpresa IsNot Nothing Then
                     mesaImpresa.Estado = Models.MesaEstado.Impresa
                     db.SaveChanges()
-                    'TODO: crear la boleta y guardarla
+
+                    Dim boleta As New Boleta With {.MesaID = modelBoleta.MesaID,
+                                                   .EstadoImpresa = Models.BoletaEstado.NoImpresa,
+                                                   .Total = modelBoleta.Total,
+                                                   .Propina = modelBoleta.Propina,
+                                                   .FechaCreacion = modelBoleta.FechaCreacion}
+                    db.Boletas.Add(boleta)
+                    db.SaveChanges()
                     Return True
                 End If
                 Return False
