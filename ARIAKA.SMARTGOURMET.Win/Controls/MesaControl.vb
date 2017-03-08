@@ -140,7 +140,8 @@ Public Class MesaControl
         report.ObjectDataSourceMesaDetalle.DataSource = _cliente.GetMesaDetalles(_mesaID)
         report.XrTableCell_Total.Text = Me.LabelControl_Suma.Text
         report.XrTableCell_Garzon.Text = CType(ComboBox_Garzones.SelectedItem, Models.UserDTO).Nombre
-        report.XrTableCell_Fecha.Text = Me.DateTimePicker_Fecha.Value.ToShortDateString()
+        report.XrTableCell_Hora_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortTimeString()
+        report.XrTableCell_Fecha_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortDateString()
         report.XrTableCell_MesaNumero.Text = Me.TextBox_NumeroMesa.Text
         report.XrTableCell_Propina.Text = CalculaPropina()
         report.XrTableCell_TotalAll_Value.Text = SumaPropinaTotal(CalculaPropina())
@@ -187,5 +188,26 @@ Public Class MesaControl
             End If
             MessageBox.Show("No se pudo pagar la mesa", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
+    End Sub
+
+    Private Sub SimpleButton_Cocina_Click(sender As Object, e As EventArgs) Handles SimpleButton_Cocina.Click
+        If _mesaID = 0 Then
+            MessageBox.Show("No existe mesa creada aún", "Imprimir Cocina", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim report As New PDF.CocinaReport() With {.ShowPrintMarginsWarning = False, .ShowPrintStatusDialog = False}
+        report.ObjectDataSourceMesaDetalle.DataSource = _cliente.GetProductosImprimir(_mesaID)
+        report.XrTableCell_Garzon.Text = CType(ComboBox_Garzones.SelectedItem, Models.UserDTO).Nombre
+        report.XrTableCell_Hora_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortTimeString()
+        report.XrTableCell_MesaNumero.Text = Me.TextBox_NumeroMesa.Text
+        report.XrTableCell_Fecha_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortDateString()
+        report.XrRichText_Observacion.Text = Me.RichTextBox_Comentarios.Text
+
+        Using printingTool As New ReportPrintTool(report)
+            printingTool.Print(My.Settings.PrinterCocina)
+        End Using
+
+        MessageBox.Show("Se  Imprimio en Cocina", "Imprimir Cocina", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class

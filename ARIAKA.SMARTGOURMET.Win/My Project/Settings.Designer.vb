@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("POS-80")>  _
         Public Property PrinterCocina() As String
             Get
                 Return CType(Me("PrinterCocina"),String)

@@ -261,5 +261,44 @@ Namespace Logica
             End Try
         End Function
 
+        Public Function GetProductosImprimir(mesaID As Integer) As List(Of Models.MesaDetalleDTO)
+            Dim db As New SGContext
+            Try
+                Dim listMesaDetalle As List(Of Data.MesaDetalle) = db.MesaDetalles.
+                    Where(Function(md) md.MesaID = mesaID And md.EstadoImpreso = Models.BoletaEstado.NoImpresa).ToList()
+
+                Dim listProducts As List(Of Producto) = db.Productoes.ToList()
+                Dim listCate As List(Of Categoria) = db.Categorias.ToList()
+                Dim listMesaDetalleDto As New List(Of Models.MesaDetalleDTO)
+                For Each mdetalle As Data.MesaDetalle In listMesaDetalle
+                    mdetalle.EstadoImpreso = Models.BoletaEstado.Impresa
+                    Dim prod As New Models.ProductosDTO With {.Id = mdetalle.ProductoID,
+                        .Nombre = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Nombre).SingleOrDefault(),
+                        .Precio = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Precio).SingleOrDefault(),
+                        .ProducCodigo = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.ProductoCodigo).SingleOrDefault(),
+                        .Stock = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.Stock).SingleOrDefault(),
+                        .CategoriaID = listProducts.Where(Function(p) p.ID = mdetalle.ProductoID).Select(Function(p) p.CategoriaID).SingleOrDefault(),
+                        .Categoria = New Models.CategoriaDTO With {.ID = mdetalle.Producto.CategoriaID,
+                                                             .Nombre = listCate.Where(Function(c) c.ID = mdetalle.Producto.CategoriaID) _
+                                                             .Select(Function(c) c.Nombre).SingleOrDefault()}}
+
+                    listMesaDetalleDto.Add(New Models.MesaDetalleDTO With {.ID = mdetalle.ID,
+                                                                           .MesaID = mdetalle.MesaID,
+                                                                           .EstadoImpreso = mdetalle.EstadoImpreso,
+                                                                           .FechaPedido = mdetalle.FechaPedido,
+                                                                           .ProductoID = mdetalle.ProductoID,
+                                                                           .Producto = prod})
+                Next
+                db.SaveChanges()
+                Return listMesaDetalleDto
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtiene Detalle Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New List(Of Models.MesaDetalleDTO)
+            Finally
+                db.Dispose()
+            End Try
+
+        End Function
+
     End Class
 End Namespace
