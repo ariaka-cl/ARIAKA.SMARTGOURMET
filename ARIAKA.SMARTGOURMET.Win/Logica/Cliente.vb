@@ -75,12 +75,17 @@ Namespace Logica
             Try
                 Dim listMesa As List(Of Mesa) = db.Mesas.Where(Function(m) m.Estado = Models.MesaEstado.Ocupada _
                                                                    OrElse m.Estado = Models.MesaEstado.Impresa).ToList()
+                Dim users As List(Of User) = db.Users.ToList()
+
                 Dim listMesaDTO As New List(Of Models.MesaDTO)
                 If listMesa Is Nothing OrElse listMesa.Count = 0 Then Return listMesaDTO
                 For Each mesa As Mesa In listMesa
                     If fecha.Date = mesa.FechaCreacion.Value.Date Then
+                        Dim usuario As New Models.UserDTO With {.Nombre = users.Where(Function(u) u.ID = mesa.UsuarioID) _
+                            .Select(Function(u) u.Nombre).SingleOrDefault()}
+
                         listMesaDTO.Add(New Models.MesaDTO With {.ID = mesa.ID, .Estado = mesa.Estado, .FechaCreacion = mesa.FechaCreacion,
-                                                            .Numero = mesa.Numero, .UsuarioID = mesa.UsuarioID})
+                                                            .Numero = mesa.Numero, .UsuarioID = mesa.UsuarioID, .Usuario = usuario})
                     End If
                 Next
                 Return listMesaDTO
