@@ -308,5 +308,55 @@ Namespace Logica
 
         End Function
 
+        Public Function GetOneMesa(mesaID As Integer) As Models.MesaDTO
+            Dim db As New SGContext
+            Try
+                Dim mesa As Mesa = db.Mesas.Where(Function(m) m.ID = mesaID).SingleOrDefault()
+                Dim mesaDTO As New Models.MesaDTO
+                If mesa Is Nothing Then Return mesaDTO
+                Dim users As User = db.Users.Where(Function(u) u.ID = mesa.UsuarioID).SingleOrDefault()
+                Dim listMesaDetalle As List(Of MesaDetalle) = db.MesaDetalles.Where(Function(md) md.MesaID = mesa.ID).ToList()
+                Dim listCate As List(Of Categoria) = db.Categorias.ToList()
+                Dim listMesaDetalleDTO As New List(Of Models.MesaDetalleDTO)
+
+                If listMesaDetalle IsNot Nothing OrElse listMesaDetalle.Count > 0 Then
+                    Dim listProducts As List(Of Producto) = db.Productoes.ToList()
+
+                    For Each meDetail As MesaDetalle In listMesaDetalle
+                        Dim prod As New Models.ProductosDTO With {.Id = meDetail.ProductoID,
+                        .Nombre = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.Nombre).SingleOrDefault(),
+                        .Precio = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.Precio).SingleOrDefault(),
+                        .ProducCodigo = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.ProductoCodigo).SingleOrDefault(),
+                        .Stock = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.Stock).SingleOrDefault(),
+                        .CategoriaID = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.CategoriaID).SingleOrDefault(),
+                        .Categoria = New Models.CategoriaDTO With {.ID = meDetail.Producto.CategoriaID,
+                                                             .Nombre = listCate.Where(Function(c) c.ID = meDetail.Producto.CategoriaID) _
+                                                             .Select(Function(c) c.Nombre).SingleOrDefault()}}
+
+                        listMesaDetalleDTO.Add(New Models.MesaDetalleDTO With
+                                               {.ID = meDetail.ID, .MesaID = meDetail.MesaID, .EstadoImpreso = meDetail.EstadoImpreso,
+                                               .FechaPedido = meDetail.FechaPedido, .ProductoID = meDetail.ProductoID, .Producto = prod})
+
+                    Next
+                End If
+
+                Dim usuarioDTO As New Models.UserDTO With {.ID = users.ID, .Nombre = users.Nombre, .UserName = users.UserName}
+                With mesaDTO
+                    .ID = mesa.ID
+                    .Numero = mesa.Numero
+                    .Notas = mesa.Notas
+                    .Usuario = usuarioDTO
+                    .FechaCreacion = mesa.FechaCreacion
+                    .MesaDetalles = listMesaDetalleDTO
+                End With
+                Return mesaDTO
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtiene Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New Models.MesaDTO
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
     End Class
 End Namespace

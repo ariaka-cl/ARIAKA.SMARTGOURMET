@@ -6,6 +6,14 @@ Public Class MesaControl
 
     Private Property _cliente As New Logica.Cliente
     Private Property _mesaID As Integer
+    Public Property MesaID As Integer
+        Get
+            Return _mesaID
+        End Get
+        Set(value As Integer)
+            _mesaID = value
+        End Set
+    End Property
 
     Private Sub Mesa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PopulateGarzon()
@@ -14,8 +22,21 @@ Public Class MesaControl
             PopulateMesa()
         End If
     End Sub
-    Private Sub PopulateMesa()
 
+    Public Sub PopulateMesa()
+        Dim mesa As Models.MesaDTO = _cliente.GetOneMesa(_mesaID)
+        Me.TextBox_NumeroMesa.Text = mesa.Numero
+        Me.DateTimePicker_Fecha.Value = mesa.FechaCreacion
+        Me.RichTextBox_Comentarios.Text = mesa.Notas
+        Me.ComboBox_Garzones.SelectedItem = mesa.Usuario.Nombre
+
+        If mesa.MesaDetalles IsNot Nothing Then
+            Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Clear()
+            For i As Integer = 0 To mesa.MesaDetalles.Count - 1
+                Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Add(mesa.MesaDetalles.Item(i))
+            Next
+            Me.ProductosMesaControl1.GridView1.RefreshEditor(True)
+        End If
     End Sub
 
     Private Sub PopulateProductos()

@@ -33,7 +33,8 @@ Namespace Controls
 
         Private Shared Sub CallMesasView(mesaID As Integer)
             My.Forms.MainForm.TableLayoutPanel_Dash.Controls.Clear()
-            Dim nuevaMesa As New MesaControl With {.Dock = Windows.Forms.DockStyle.Fill, .Visible = True}
+            Dim nuevaMesa As New MesaControl With {.Dock = DockStyle.Fill, .Visible = True}
+            nuevaMesa.MesaID = mesaID
             My.Forms.MainForm.TableLayoutPanel_Dash.Controls.Add(nuevaMesa, 0, 0)
             My.Forms.MainForm.TableLayoutPanel_Dash.Refresh()
 
