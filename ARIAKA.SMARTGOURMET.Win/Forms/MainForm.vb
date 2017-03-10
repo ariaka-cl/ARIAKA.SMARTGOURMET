@@ -19,5 +19,11 @@
             Me.TableLayoutPanel_Dash.Refresh()
         End Sub
 
+        Private Sub SimpleButton_Categorias_Click(sender As Object, e As EventArgs) Handles SimpleButton_Categorias.Click
+            Me.TableLayoutPanel_Dash.Controls.Clear()
+            Dim categoria As New Controls.CategoriaViewControl With {.Dock = Windows.Forms.DockStyle.Fill, .Visible = True}
+            Me.TableLayoutPanel_Dash.Controls.Add(categoria, 0, 0)
+            Me.TableLayoutPanel_Dash.Refresh()
+        End Sub
     End Class
 End Namespace
