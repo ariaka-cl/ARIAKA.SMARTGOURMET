@@ -360,5 +360,60 @@ Namespace Logica
             End Try
         End Function
 
+        Public Function GetCategoria() As List(Of Models.CategoriaDTO)
+            Dim db As New SGContext
+            Try
+                Dim listCate As List(Of Categoria) = db.Categorias.ToList()
+                Dim listCateDto As New List(Of Models.CategoriaDTO)
+                For Each cate As Categoria In listCate
+
+                    listCateDto.Add(New Models.CategoriaDTO With {.ID = cate.ID,
+                                                                   .Nombre = cate.Nombre})
+                Next
+
+                Return listCateDto
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Categorias", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New List(Of Models.CategoriaDTO)
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+        Public Function GuardarCategoria(categoria As Models.CategoriaDTO) As Models.CategoriaDTO
+            Dim db As New SGContext
+            Try
+                Dim cate As New Categoria With {.Nombre = categoria.Nombre}
+                db.Categorias.Add(cate)
+                db.SaveChanges()
+                categoria.ID = cate.ID
+
+                Return categoria
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Agregar Categoria", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New Models.CategoriaDTO
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+        Public Function EliminarCategoria(id As Integer) As Boolean
+            Dim db As New SGContext
+            Try
+                Dim cate As Categoria = db.Categorias.Where(Function(c) c.ID = id).SingleOrDefault()
+                db.Categorias.Remove(cate)
+                db.SaveChanges()
+                Return True
+
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Eliminar Categoria", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+
+
     End Class
 End Namespace
