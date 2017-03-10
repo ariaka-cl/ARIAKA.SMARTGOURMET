@@ -67,7 +67,10 @@
     <Reference Include="DevExpress.XtraGauges.v16.1.Core, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v16.1, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.1, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v16.1, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v16.1, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\DevExpress 16.1\Components\Bin\Framework\DevExpress.XtraPrinting.v16.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraReports.v16.1, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v16.1.Extensions, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -112,6 +115,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ResumenMesaGridControl.Designer.vb">
+      <DependentUpon>ResumenMesaGridControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ResumenMesaGridControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Logica\Cliente.vb" />
     <Compile Include="Controls\MesaControl.Designer.vb">
       <DependentUpon>MesaControl.vb</DependentUpon>
@@ -123,12 +132,6 @@
       <DependentUpon>ProductosMesaControl.vb</DependentUpon>
     </Compile>
     <Compile Include="Controls\ProductosMesaControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ResumenMesaControl.Designer.vb">
-      <DependentUpon>ResumenMesaControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ResumenMesaControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\ResumenMesaViewControl.Designer.vb">
@@ -185,8 +188,8 @@
     <EmbeddedResource Include="Controls\ProductosMesaControl.resx">
       <DependentUpon>ProductosMesaControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ResumenMesaControl.resx">
-      <DependentUpon>ResumenMesaControl.vb</DependentUpon>
+    <EmbeddedResource Include="Controls\ResumenMesaGridControl.resx">
+      <DependentUpon>ResumenMesaGridControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ResumenMesaViewControl.resx">
       <DependentUpon>ResumenMesaViewControl.vb</DependentUpon>
@@ -211,6 +214,7 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.MesaDetalleDTO.datasource" />
+    <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.MesaDTO.datasource" />
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.ProductosDTO.datasource" />
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.UserDTO.datasource" />
     <None Include="My Project\Settings.settings">

@@ -1,30 +1,22 @@
-﻿Namespace Controls
+﻿Imports System.Windows.Forms
+
+Namespace Controls
     Public Class ResumenMesaViewControl
         Dim _cliente As New Logica.Cliente
-        Private Sub TableLayoutPanel_ResumenContainer_Paint(sender As Object, e As EventArgs) _
-            Handles MyBase.Paint
 
-            Dim row As Integer = 0
-            Dim col As Integer = 0
-            Dim count As Integer = 0
-            Dim layout As New Windows.Forms.TableLayoutPanel With {.ColumnCount = 4}
+        Public Sub ResumenMesaViewControl_Load(sender As Object, e As EventArgs) Handles Me.Load
+            UpdateControls()
+        End Sub
 
-            Me.TableLayoutPanel_ResumenContainer.Controls.Add(layout, 0, 1)
-            Dim listMesas As List(Of Models.MesaDTO) = _cliente.GetMesas()
-            For Each mesaDTO As Models.MesaDTO In listMesas
-                col = count Mod 4
-                Dim resumenMesa As New ResumenMesaControl With {.AutoSize = True}
-                resumenMesa.LabelControl_Garzon_Value.Text = mesaDTO.UsuarioID
-                resumenMesa.LabelControl_MesaN_Value.Text = mesaDTO.Numero
-                resumenMesa.LabelControl_Hora_Value.Text = mesaDTO.FechaCreacion.Value.TimeOfDay.ToString.Substring(0, 5)
-                layout.Controls.Add(resumenMesa, col, row)
+        Private Sub UpdateControls()
+            Dim listMesas As List(Of Models.MesaDTO) = _cliente.GetMesas(Me.DateTimePicker1.Value.Date)
+            If listMesas IsNot Nothing Then
+                Me.ResumenMesaGridControl1.MesaDTOBindingSource.DataSource = listMesas
+            End If
+        End Sub
 
-                If col = 3 Then
-                    row += 1
-                End If
-                count += 1
-            Next
-
+        Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
+            UpdateControls()
         End Sub
     End Class
 End Namespace

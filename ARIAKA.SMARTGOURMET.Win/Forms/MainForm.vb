@@ -7,8 +7,8 @@
         Private Sub SimpleButton_Mesas_Click(sender As Object, e As EventArgs) Handles SimpleButton_Mesas.Click
             Me.SimpleButton_AddTable.Visible = True
             Me.TableLayoutPanel_Dash.Controls.Clear()
-            'Dim resumenMesaView As New Controls.ResumenMesaViewControl With {.Dock = Windows.Forms.DockStyle.Fill}
-            'Me.TableLayoutPanel_Dash.Controls.Add(resumenMesaView, 0, 0)
+            Dim resumenMesaView As New Controls.ResumenMesaViewControl With {.Dock = Windows.Forms.DockStyle.Fill}
+            Me.TableLayoutPanel_Dash.Controls.Add(resumenMesaView, 0, 0)
 
         End Sub
 

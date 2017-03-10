@@ -6,10 +6,39 @@ Public Class MesaControl
 
     Private Property _cliente As New Logica.Cliente
     Private Property _mesaID As Integer
+    Public Property MesaID As Integer
+        Get
+            Return _mesaID
+        End Get
+        Set(value As Integer)
+            _mesaID = value
+        End Set
+    End Property
 
     Private Sub Mesa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PopulateGarzon()
         PopulateProductos()
+        If _mesaID <> 0 Then
+            PopulateMesa()
+        End If
+    End Sub
+
+    Public Sub PopulateMesa()
+        Dim mesa As Models.MesaDTO = _cliente.GetOneMesa(_mesaID)
+        Me.TextBox_NumeroMesa.Text = mesa.Numero
+        Me.DateTimePicker_Fecha.Value = mesa.FechaCreacion
+        Me.RichTextBox_Comentarios.Text = mesa.Notas
+        Me.ComboBox_Garzones.SelectedItem = mesa.Usuario.Nombre
+        Dim total As Integer = 0
+        If mesa.MesaDetalles IsNot Nothing Then
+            Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Clear()
+            For i As Integer = 0 To mesa.MesaDetalles.Count - 1
+                Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Add(mesa.MesaDetalles.Item(i))
+                total = mesa.MesaDetalles.Item(i).Producto.Precio + total
+            Next
+            Me.ProductosMesaControl1.GridView1.RefreshEditor(True)
+        End If
+        Me.LabelControl_Suma.Text = total.ToString()
     End Sub
 
     Private Sub PopulateProductos()
@@ -90,7 +119,7 @@ Public Class MesaControl
         MessageBox.Show("Se guardaron con éxito los registros", "Guardar Mesa", MessageBoxButtons.OK)
     End Sub
 
-    Private Sub TextBox_NumeroMesa_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NumeroMesa.TextChanged
+    Private Sub TextBox_NumeroMesa_KeyUp(sender As Object, e As EventArgs) Handles TextBox_NumeroMesa.KeyUp
         Dim numero As String = TextBox_NumeroMesa.Text
         If String.IsNullOrWhiteSpace(numero) Then Return
         Dim estado As Models.MesaEstado = _cliente.SaberEstadoMesa(numero)
@@ -182,11 +211,22 @@ Public Class MesaControl
 
         Dim result As DialogResult = MessageBox.Show("Esta Seguro que desea Pagar", "Pagar Mesa", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
-            If _cliente.PagarMesa(_mesaID) Then
-                MessageBox.Show("La mesa se pago con éxito", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Return
-            End If
-            MessageBox.Show("No se pudo pagar la mesa", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim estadoMesa As Integer = _cliente.PagarMesa(_mesaID)
+
+            Select Case estadoMesa
+                Case Models.MesaEstado.Pagada
+                    MessageBox.Show("La mesa se pago con éxito", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Return
+                Case Models.MesaEstado.Impresa
+                    MessageBox.Show("No se pudo pagar la mesa,", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                Case Models.MesaEstado.Ocupada
+                    MessageBox.Show("No se pudo pagar la mesa, aún no se imprime cuenta", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                Case Else
+                    MessageBox.Show("No se pudo pagar la mesa, verifique que este impresa la cuenta.", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+            End Select
         End If
     End Sub
 

@@ -55,6 +55,7 @@ Namespace Logica
                 db.Dispose()
             End Try
         End Function
+
         Public Function SaberEstadoMesa(numero As String) As Models.MesaEstado
             Dim db As New Data.SGContext
             Try
@@ -69,16 +70,23 @@ Namespace Logica
             End Try
         End Function
 
-        Public Function GetMesas() As List(Of Models.MesaDTO)
+        Public Function GetMesas(fecha As Date) As List(Of Models.MesaDTO)
             Dim db As New Data.SGContext
             Try
                 Dim listMesa As List(Of Mesa) = db.Mesas.Where(Function(m) m.Estado = Models.MesaEstado.Ocupada _
                                                                    OrElse m.Estado = Models.MesaEstado.Impresa).ToList()
+                Dim users As List(Of User) = db.Users.ToList()
+
                 Dim listMesaDTO As New List(Of Models.MesaDTO)
                 If listMesa Is Nothing OrElse listMesa.Count = 0 Then Return listMesaDTO
                 For Each mesa As Mesa In listMesa
-                    listMesaDTO.Add(New Models.MesaDTO With {.ID = mesa.ID, .Estado = mesa.Estado, .FechaCreacion = mesa.FechaCreacion,
-                                                            .Numero = mesa.Numero, .UsuarioID = mesa.UsuarioID})
+                    If fecha.Date = mesa.FechaCreacion.Value.Date Then
+                        Dim usuario As New Models.UserDTO With {.Nombre = users.Where(Function(u) u.ID = mesa.UsuarioID) _
+                            .Select(Function(u) u.Nombre).SingleOrDefault()}
+
+                        listMesaDTO.Add(New Models.MesaDTO With {.ID = mesa.ID, .Estado = mesa.Estado, .FechaCreacion = mesa.FechaCreacion,
+                                                            .Numero = mesa.Numero, .UsuarioID = mesa.UsuarioID, .Usuario = usuario})
+                    End If
                 Next
                 Return listMesaDTO
             Catch ex As Exception
@@ -216,19 +224,21 @@ Namespace Logica
 
         End Function
 
-        Public Function PagarMesa(mesaID As Integer) As Boolean
+        Public Function PagarMesa(mesaID As Integer) As Integer
             Dim db As New SGContext
+            Dim estadoMesa As Integer
             Try
                 Dim mesaPagar As Mesa = db.Mesas.Where(Function(m) m.ID = mesaID AndAlso m.Estado = Models.MesaEstado.Impresa).SingleOrDefault()
                 If mesaPagar IsNot Nothing Then
+                    estadoMesa = mesaPagar.Estado
                     mesaPagar.Estado = Models.MesaEstado.Pagada
                     db.SaveChanges()
-                    Return True
+                    Return Models.MesaEstado.Pagada
                 End If
-                Return False
+                Return estadoMesa
             Catch ex As Exception
                 MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Pagando Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
+                Return estadoMesa
             Finally
                 db.Dispose()
             End Try
@@ -298,6 +308,56 @@ Namespace Logica
                 db.Dispose()
             End Try
 
+        End Function
+
+        Public Function GetOneMesa(mesaID As Integer) As Models.MesaDTO
+            Dim db As New SGContext
+            Try
+                Dim mesa As Mesa = db.Mesas.Where(Function(m) m.ID = mesaID).SingleOrDefault()
+                Dim mesaDTO As New Models.MesaDTO
+                If mesa Is Nothing Then Return mesaDTO
+                Dim users As User = db.Users.Where(Function(u) u.ID = mesa.UsuarioID).SingleOrDefault()
+                Dim listMesaDetalle As List(Of MesaDetalle) = db.MesaDetalles.Where(Function(md) md.MesaID = mesa.ID).ToList()
+                Dim listCate As List(Of Categoria) = db.Categorias.ToList()
+                Dim listMesaDetalleDTO As New List(Of Models.MesaDetalleDTO)
+
+                If listMesaDetalle IsNot Nothing OrElse listMesaDetalle.Count > 0 Then
+                    Dim listProducts As List(Of Producto) = db.Productoes.ToList()
+
+                    For Each meDetail As MesaDetalle In listMesaDetalle
+                        Dim prod As New Models.ProductosDTO With {.Id = meDetail.ProductoID,
+                        .Nombre = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.Nombre).SingleOrDefault(),
+                        .Precio = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.Precio).SingleOrDefault(),
+                        .ProducCodigo = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.ProductoCodigo).SingleOrDefault(),
+                        .Stock = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.Stock).SingleOrDefault(),
+                        .CategoriaID = listProducts.Where(Function(p) p.ID = meDetail.ProductoID).Select(Function(p) p.CategoriaID).SingleOrDefault(),
+                        .Categoria = New Models.CategoriaDTO With {.ID = meDetail.Producto.CategoriaID,
+                                                             .Nombre = listCate.Where(Function(c) c.ID = meDetail.Producto.CategoriaID) _
+                                                             .Select(Function(c) c.Nombre).SingleOrDefault()}}
+
+                        listMesaDetalleDTO.Add(New Models.MesaDetalleDTO With
+                                               {.ID = meDetail.ID, .MesaID = meDetail.MesaID, .EstadoImpreso = meDetail.EstadoImpreso,
+                                               .FechaPedido = meDetail.FechaPedido, .ProductoID = meDetail.ProductoID, .Producto = prod})
+
+                    Next
+                End If
+
+                Dim usuarioDTO As New Models.UserDTO With {.ID = users.ID, .Nombre = users.Nombre, .UserName = users.UserName}
+                With mesaDTO
+                    .ID = mesa.ID
+                    .Numero = mesa.Numero
+                    .Notas = mesa.Notas
+                    .Usuario = usuarioDTO
+                    .FechaCreacion = mesa.FechaCreacion
+                    .MesaDetalles = listMesaDetalleDTO
+                End With
+                Return mesaDTO
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtiene Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New Models.MesaDTO
+            Finally
+                db.Dispose()
+            End Try
         End Function
 
     End Class
