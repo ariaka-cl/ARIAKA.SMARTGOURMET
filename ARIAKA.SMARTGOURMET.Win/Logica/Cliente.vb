@@ -413,6 +413,35 @@ Namespace Logica
             End Try
         End Function
 
+        Public Function GetProduc() As List(Of Models.ProductosDTO)
+            Dim db As New SGContext
+            Try
+                Dim listProductos As List(Of Producto) = db.Productoes.ToList()
+                Dim listCate As List(Of Categoria) = db.Categorias.ToList()
+                Dim listProductosDto As New List(Of Models.ProductosDTO)
+                For Each produ As Producto In listProductos
+
+                    Dim cate As New Models.CategoriaDTO With {.ID = produ.CategoriaID,
+                        .Nombre = listCate.Where(Function(c) c.ID = produ.CategoriaID).
+                        Select(Function(c) c.Nombre).SingleOrDefault()}
+
+                    listProductosDto.Add(New Models.ProductosDTO With {.Id = produ.ID,
+                                                                   .Nombre = produ.Nombre,
+                                                                   .Precio = produ.Precio,
+                                                                   .ProducCodigo = produ.ProductoCodigo,
+                                                                   .Stock = produ.Stock,
+                                                                   .CategoriaID = produ.CategoriaID,
+                                                                   .Categoria = cate})
+                Next
+
+                Return listProductosDto
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Productos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New List(Of Models.ProductosDTO)
+            Finally
+                db.Dispose()
+            End Try
+        End Function
 
 
     End Class
