@@ -443,6 +443,41 @@ Namespace Logica
             End Try
         End Function
 
+        Public Function GuardarProductos(productoDto As Models.ProductosDTO) As Models.ProductosDTO
+            Dim db As New SGContext
+            Try
+                If productoDto Is Nothing Then Return New Models.ProductosDTO
+                Dim producto As New Producto With {.ProductoCodigo = productoDto.ProducCodigo,
+                                                   .Nombre = productoDto.Nombre,
+                                                   .Precio = productoDto.Precio,
+                                                   .Stock = productoDto.Stock,
+                                                   .CategoriaID = productoDto.CategoriaID}
+                db.Productoes.Add(producto)
+                db.SaveChanges()
+                productoDto.Id = producto.ID
+                Return productoDto
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Productos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New Models.ProductosDTO
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+        Public Function EliminarProducto(id As Integer) As Boolean
+            Dim db As New SGContext
+            Try
+                Dim produ As Producto = db.Productoes.Where(Function(c) c.ID = id).SingleOrDefault()
+                db.Productoes.Remove(produ)
+                db.SaveChanges()
+                Return True
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Eliminar Producto", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            Finally
+                db.Dispose()
+            End Try
+        End Function
 
     End Class
 End Namespace

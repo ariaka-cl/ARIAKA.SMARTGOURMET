@@ -20,8 +20,9 @@
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
+            Me.components = New System.ComponentModel.Container()
             Me.GridControl_Producto = New DevExpress.XtraGrid.GridControl()
-            Me.ProductoDTOBindingSource = New System.Windows.Forms.BindingSource()
+            Me.ProductoDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
             Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
             Me.GridColumn_ID = New DevExpress.XtraGrid.Columns.GridColumn()
             Me.GridColumn_Codigo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,6 +57,7 @@
             Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn_ID, Me.GridColumn_Codigo, Me.GridColumn_Precio, Me.GridColumn_Categoria, Me.GridColumn_Stock, Me.GridColumn_Nombre})
             Me.GridView1.GridControl = Me.GridControl_Producto
             Me.GridView1.Name = "GridView1"
+            Me.GridView1.OptionsBehavior.Editable = False
             Me.GridView1.OptionsView.ShowGroupPanel = False
             '
             'GridColumn_ID
