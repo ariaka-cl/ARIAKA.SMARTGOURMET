@@ -25,5 +25,12 @@
             Me.TableLayoutPanel_Dash.Controls.Add(categoria, 0, 0)
             Me.TableLayoutPanel_Dash.Refresh()
         End Sub
+
+        Private Sub SimpleButton_Productos_Click(sender As Object, e As EventArgs) Handles SimpleButton_Productos.Click
+            Me.TableLayoutPanel_Dash.Controls.Clear()
+            Dim productos As New Controls.ProductosViewControl With {.Dock = Windows.Forms.DockStyle.Fill, .Visible = True}
+            Me.TableLayoutPanel_Dash.Controls.Add(productos, 0, 0)
+            Me.TableLayoutPanel_Dash.Refresh()
+        End Sub
     End Class
 End Namespace

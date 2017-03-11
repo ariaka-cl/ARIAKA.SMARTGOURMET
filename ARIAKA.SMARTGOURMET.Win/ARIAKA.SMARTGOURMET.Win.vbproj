@@ -127,6 +127,18 @@
     <Compile Include="Controls\CategoriaViewControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\ProductosControl.Designer.vb">
+      <DependentUpon>ProductosControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProductosControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProductosViewControl.Designer.vb">
+      <DependentUpon>ProductosViewControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProductosViewControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\ResumenMesaGridControl.Designer.vb">
       <DependentUpon>ResumenMesaGridControl.vb</DependentUpon>
     </Compile>
@@ -203,8 +215,14 @@
     <EmbeddedResource Include="Controls\MesaControl.resx">
       <DependentUpon>MesaControl.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProductosControl.resx">
+      <DependentUpon>ProductosControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProductosMesaControl.resx">
       <DependentUpon>ProductosMesaControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProductosViewControl.resx">
+      <DependentUpon>ProductosViewControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ResumenMesaGridControl.resx">
       <DependentUpon>ResumenMesaGridControl.vb</DependentUpon>
