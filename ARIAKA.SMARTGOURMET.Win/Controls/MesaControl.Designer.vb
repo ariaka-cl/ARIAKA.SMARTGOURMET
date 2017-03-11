@@ -19,7 +19,6 @@ Partial Class MesaControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MesaControl))
         Me.TableLayoutPanel_MesaMain = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel_MesaRow1 = New System.Windows.Forms.TableLayoutPanel()
@@ -38,9 +37,9 @@ Partial Class MesaControl
         Me.LabelControl_Garzon = New DevExpress.XtraEditors.LabelControl()
         Me.DateTimePicker_Fecha = New System.Windows.Forms.DateTimePicker()
         Me.ComboBox_Garzones = New System.Windows.Forms.ComboBox()
-        Me.UserDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.UserDTOBindingSource = New System.Windows.Forms.BindingSource()
         Me.SearchLookUpEdit_Producto = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.ProductosDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ProductosDTOBindingSource = New System.Windows.Forms.BindingSource()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colProducCodigo = New DevExpress.XtraGrid.Columns.GridColumn()

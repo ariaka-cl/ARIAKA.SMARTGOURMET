@@ -20,7 +20,6 @@
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-            Me.components = New System.ComponentModel.Container()
             Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
             Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
             Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -61,19 +60,16 @@
             Me.XrTableRow6 = New DevExpress.XtraReports.UI.XRTableRow()
             Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.XrTableCell_Garzon = New DevExpress.XtraReports.UI.XRTableCell()
+            Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
+            Me.XrTableCell_Fecha = New DevExpress.XtraReports.UI.XRTableCell()
+            Me.XrTableCell_Fecha_Value = New DevExpress.XtraReports.UI.XRTableCell()
             Me.XrTableHeader = New DevExpress.XtraReports.UI.XRTable()
             Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
             Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
-            Me.SumaProductos = New DevExpress.XtraReports.UI.CalculatedField()
-            Me.Cantidad = New DevExpress.XtraReports.UI.CalculatedField()
             Me.FormattingRule1 = New DevExpress.XtraReports.UI.FormattingRule()
-            Me.NombreGroup = New DevExpress.XtraReports.UI.CalculatedField()
-            Me.ObjectDataSourceMesaDetalle = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-            Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
-            Me.XrTableCell_Fecha = New DevExpress.XtraReports.UI.XRTableCell()
-            Me.XrTableCell_Fecha_Value = New DevExpress.XtraReports.UI.XRTableCell()
+            Me.ObjectDataSourceMesaDetalle = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource()
             CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTableTotales, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,7 +117,7 @@
             '
             'XrTableCell5
             '
-            Me.XrTableCell5.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "NombreGroup")})
+            Me.XrTableCell5.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Nombre")})
             Me.XrTableCell5.Dpi = 100.0!
             Me.XrTableCell5.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.XrTableCell5.Name = "XrTableCell5"
@@ -132,7 +128,7 @@
             '
             'XrTableCell6
             '
-            Me.XrTableCell6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "SumaProductos")})
+            Me.XrTableCell6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Precio")})
             Me.XrTableCell6.Dpi = 100.0!
             Me.XrTableCell6.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.XrTableCell6.Name = "XrTableCell6"
@@ -450,6 +446,32 @@
             Me.XrTableCell_Garzon.StylePriority.UseFont = False
             Me.XrTableCell_Garzon.Weight = 3.0R
             '
+            'XrTableRow9
+            '
+            Me.XrTableRow9.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell_Fecha, Me.XrTableCell_Fecha_Value})
+            Me.XrTableRow9.Dpi = 100.0!
+            Me.XrTableRow9.Name = "XrTableRow9"
+            Me.XrTableRow9.Weight = 1.0R
+            '
+            'XrTableCell_Fecha
+            '
+            Me.XrTableCell_Fecha.Dpi = 100.0!
+            Me.XrTableCell_Fecha.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrTableCell_Fecha.Name = "XrTableCell_Fecha"
+            Me.XrTableCell_Fecha.StylePriority.UseFont = False
+            Me.XrTableCell_Fecha.StylePriority.UseTextAlignment = False
+            Me.XrTableCell_Fecha.Text = "Fecha:"
+            Me.XrTableCell_Fecha.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+            Me.XrTableCell_Fecha.Weight = 1.0R
+            '
+            'XrTableCell_Fecha_Value
+            '
+            Me.XrTableCell_Fecha_Value.Dpi = 100.0!
+            Me.XrTableCell_Fecha_Value.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrTableCell_Fecha_Value.Name = "XrTableCell_Fecha_Value"
+            Me.XrTableCell_Fecha_Value.StylePriority.UseFont = False
+            Me.XrTableCell_Fecha_Value.Weight = 3.0R
+            '
             'XrTableHeader
             '
             Me.XrTableHeader.Dpi = 100.0!
@@ -496,62 +518,18 @@
             Me.XrTableCell3.Text = "Precio"
             Me.XrTableCell3.Weight = 1.1837474128687067R
             '
-            'SumaProductos
-            '
-            Me.SumaProductos.Expression = "[][[^.Id]==[Id]].Sum([Precio])"
-            Me.SumaProductos.Name = "SumaProductos"
-            '
-            'Cantidad
-            '
-            Me.Cantidad.DisplayName = "Cantidad"
-            Me.Cantidad.Expression = "[][[^.Id]==[Id]].Count()"
-            Me.Cantidad.Name = "Cantidad"
-            '
             'FormattingRule1
             '
             Me.FormattingRule1.Name = "FormattingRule1"
             '
-            'NombreGroup
-            '
-            Me.NombreGroup.Expression = "Iif([Cantidad]>1,[Nombre]  ,? )"
-            Me.NombreGroup.Name = "NombreGroup"
-            '
             'ObjectDataSourceMesaDetalle
             '
-            Me.ObjectDataSourceMesaDetalle.DataMember = "Producto"
-            Me.ObjectDataSourceMesaDetalle.DataSource = GetType(ARIAKA.SMARTGOURMET.Win.Models.MesaDetalleDTO)
+            Me.ObjectDataSourceMesaDetalle.DataSource = GetType(ARIAKA.SMARTGOURMET.Win.Models.ResumenMesaDetalleDTO)
             Me.ObjectDataSourceMesaDetalle.Name = "ObjectDataSourceMesaDetalle"
-            '
-            'XrTableRow9
-            '
-            Me.XrTableRow9.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell_Fecha, Me.XrTableCell_Fecha_Value})
-            Me.XrTableRow9.Dpi = 100.0!
-            Me.XrTableRow9.Name = "XrTableRow9"
-            Me.XrTableRow9.Weight = 1.0R
-            '
-            'XrTableCell_Fecha
-            '
-            Me.XrTableCell_Fecha.Dpi = 100.0!
-            Me.XrTableCell_Fecha.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.XrTableCell_Fecha.Name = "XrTableCell_Fecha"
-            Me.XrTableCell_Fecha.StylePriority.UseFont = False
-            Me.XrTableCell_Fecha.StylePriority.UseTextAlignment = False
-            Me.XrTableCell_Fecha.Text = "Fecha:"
-            Me.XrTableCell_Fecha.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-            Me.XrTableCell_Fecha.Weight = 1.0R
-            '
-            'XrTableCell_Fecha_Value
-            '
-            Me.XrTableCell_Fecha_Value.Dpi = 100.0!
-            Me.XrTableCell_Fecha_Value.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.XrTableCell_Fecha_Value.Name = "XrTableCell_Fecha_Value"
-            Me.XrTableCell_Fecha_Value.StylePriority.UseFont = False
-            Me.XrTableCell_Fecha_Value.Weight = 3.0R
             '
             'BoletaReport
             '
             Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.GroupHeader1})
-            Me.CalculatedFields.AddRange(New DevExpress.XtraReports.UI.CalculatedField() {Me.SumaProductos, Me.Cantidad, Me.NombreGroup})
             Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSourceMesaDetalle})
             Me.DataSource = Me.ObjectDataSourceMesaDetalle
             Me.FormattingRuleSheet.AddRange(New DevExpress.XtraReports.UI.FormattingRule() {Me.FormattingRule1})
@@ -587,13 +565,11 @@
         Friend WithEvents PageInfo As DevExpress.XtraReports.UI.XRControlStyle
         Friend WithEvents DataField As DevExpress.XtraReports.UI.XRControlStyle
         Friend WithEvents GroupHeader1 As DevExpress.XtraReports.UI.GroupHeaderBand
-        Friend WithEvents SumaProductos As DevExpress.XtraReports.UI.CalculatedField
         Friend WithEvents XrTableHeader As DevExpress.XtraReports.UI.XRTable
         Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
         Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
         Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
         Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
-        Friend WithEvents Cantidad As DevExpress.XtraReports.UI.CalculatedField
         Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
         Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
         Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
@@ -623,7 +599,6 @@
         Friend WithEvents XrTableCell_TotalAll As DevExpress.XtraReports.UI.XRTableCell
         Friend WithEvents XrTableCell_TotalAll_Value As DevExpress.XtraReports.UI.XRTableCell
         Friend WithEvents FormattingRule1 As DevExpress.XtraReports.UI.FormattingRule
-        Friend WithEvents NombreGroup As DevExpress.XtraReports.UI.CalculatedField
         Friend WithEvents XrTableRow9 As DevExpress.XtraReports.UI.XRTableRow
         Friend WithEvents XrTableCell_Fecha As DevExpress.XtraReports.UI.XRTableCell
         Friend WithEvents XrTableCell_Fecha_Value As DevExpress.XtraReports.UI.XRTableCell
