@@ -32,5 +32,12 @@
             Me.TableLayoutPanel_Dash.Controls.Add(productos, 0, 0)
             Me.TableLayoutPanel_Dash.Refresh()
         End Sub
+
+        Private Sub SimpleButton_Usuarios_Click(sender As Object, e As EventArgs) Handles SimpleButton_Usuarios.Click
+            Me.TableLayoutPanel_Dash.Controls.Clear()
+            Dim personal As New Controls.PersonalViewControl With {.Dock = Windows.Forms.DockStyle.Fill, .Visible = True}
+            Me.TableLayoutPanel_Dash.Controls.Add(personal, 0, 0)
+            Me.TableLayoutPanel_Dash.Refresh()
+        End Sub
     End Class
 End Namespace
