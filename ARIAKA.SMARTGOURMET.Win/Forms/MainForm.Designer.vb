@@ -203,6 +203,8 @@ Namespace Forms
             '
             Me.SimpleButton_Usuarios.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.SimpleButton_Usuarios.Appearance.Options.UseFont = True
+            Me.SimpleButton_Usuarios.AppearanceHovered.BackColor = System.Drawing.SystemColors.ActiveCaption
+            Me.SimpleButton_Usuarios.AppearanceHovered.Options.UseBackColor = True
             Me.SimpleButton_Usuarios.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
             Me.SimpleButton_Usuarios.Dock = System.Windows.Forms.DockStyle.Fill
             Me.SimpleButton_Usuarios.Image = CType(resources.GetObject("SimpleButton_Usuarios.Image"), System.Drawing.Image)

@@ -479,5 +479,86 @@ Namespace Logica
             End Try
         End Function
 
+        Public Function GetRol() As List(Of Models.RolDTO)
+            Dim db As New SGContext
+            Try
+                Dim listRol As List(Of Rol) = db.Rols.ToList()
+                If listRol Is Nothing OrElse listRol.Count = 0 Then Return New List(Of Models.RolDTO)
+                Dim listRolDto As New List(Of Models.RolDTO)
+                For Each rl As Rol In listRol
+                    listRolDto.Add(New Models.RolDTO With {.ID = rl.ID, .Nombre = rl.NombreRol})
+                Next
+                Return listRolDto
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Roles", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New List(Of Models.RolDTO)
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+        Public Function GetUsuarios() As List(Of Models.UserDTO)
+            Dim db As New SGContext
+            Try
+                Dim listUser As List(Of User) = db.Users.ToList()
+                If listUser Is Nothing OrElse listUser.Count = 0 Then Return New List(Of Models.UserDTO)
+                Dim listRol As List(Of Rol) = db.Rols.ToList()
+                Dim listUserDto As New List(Of Models.UserDTO)
+                For Each usuario As User In listUser
+                    Dim rolDto As New Models.RolDTO With {.ID = usuario.RolID,
+                                                          .Nombre = listRol.Where(Function(r) r.ID = usuario.RolID) _
+                                                          .Select(Function(r) r.NombreRol).SingleOrDefault()}
+                    listUserDto.Add(New Models.UserDTO With {.ID = usuario.ID,
+                                                             .Nombre = usuario.Nombre,
+                                                             .UserName = usuario.UserName,
+                                                             .Run = usuario.Run,
+                                                             .FechaCreacion = usuario.FechaCreacion,
+                                                             .RolID = usuario.RolID,
+                                                             .Rol = rolDto})
+                Next
+                Return listUserDto
+
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Personas", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New List(Of Models.UserDTO)
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+        Public Function GuardarUsuario(userDto As Models.UserDTO) As Models.UserDTO
+            Dim db As New SGContext
+            Try
+                Dim user As New User With {.Nombre = userDto.Nombre,
+                                           .UserName = userDto.UserName,
+                                           .Password = userDto.Password,
+                                           .FechaCreacion = userDto.FechaCreacion,
+                                           .Run = userDto.Run,
+                                           .RolID = userDto.RolID}
+                db.Users.Add(user)
+                db.SaveChanges()
+                userDto.ID = user.ID
+                Return userDto
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Obtener Persona", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return New Models.UserDTO
+            Finally
+                db.Dispose()
+            End Try
+        End Function
+
+        Public Function EliminarUsuario(id As Integer) As Boolean
+            Dim db As New SGContext
+            Try
+                Dim user As User = db.Users.Where(Function(u) u.ID = id).SingleOrDefault()
+                db.Users.Remove(user)
+                db.SaveChanges()
+                Return True
+            Catch ex As Exception
+                MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            Finally
+                db.Dispose()
+            End Try
+        End Function
     End Class
 End Namespace

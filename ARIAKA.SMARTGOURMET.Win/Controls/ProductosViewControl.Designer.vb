@@ -23,7 +23,6 @@
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-            Me.components = New System.ComponentModel.Container()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProductosViewControl))
             Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
             Me.SimpleButton_Eliminar = New DevExpress.XtraEditors.SimpleButton()
@@ -35,7 +34,7 @@
             Me.TextBox_Precio = New System.Windows.Forms.TextBox()
             Me.SimpleButton_Guardar = New DevExpress.XtraEditors.SimpleButton()
             Me.ComboBox_Categoria = New System.Windows.Forms.ComboBox()
-            Me.CategoriaDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+            Me.CategoriaDTOBindingSource = New System.Windows.Forms.BindingSource()
             Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
             Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
             Me.TextBox_Stock = New System.Windows.Forms.TextBox()
@@ -54,7 +53,7 @@
             Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.11719!))
             Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
             Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113.0!))
-            Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171.0!))
+            Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172.0!))
             Me.TableLayoutPanel1.Controls.Add(Me.SimpleButton_Eliminar, 5, 0)
             Me.TableLayoutPanel1.Controls.Add(Me.LabelControl1, 0, 0)
             Me.TableLayoutPanel1.Controls.Add(Me.LabelControl_Nombre, 0, 1)
@@ -85,18 +84,18 @@
             Me.SimpleButton_Eliminar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
             Me.SimpleButton_Eliminar.Image = CType(resources.GetObject("SimpleButton_Eliminar.Image"), System.Drawing.Image)
             Me.SimpleButton_Eliminar.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-            Me.SimpleButton_Eliminar.Location = New System.Drawing.Point(667, 2)
+            Me.SimpleButton_Eliminar.Location = New System.Drawing.Point(666, 2)
             Me.SimpleButton_Eliminar.Margin = New System.Windows.Forms.Padding(2)
             Me.SimpleButton_Eliminar.Name = "SimpleButton_Eliminar"
             Me.SimpleButton_Eliminar.Size = New System.Drawing.Size(98, 39)
-            Me.SimpleButton_Eliminar.TabIndex = 11
+            Me.SimpleButton_Eliminar.TabIndex = 6
             Me.SimpleButton_Eliminar.Text = "Eliminar"
             '
             'LabelControl1
             '
             Me.LabelControl1.Anchor = System.Windows.Forms.AnchorStyles.Right
             Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.LabelControl1.Location = New System.Drawing.Point(69, 12)
+            Me.LabelControl1.Location = New System.Drawing.Point(68, 12)
             Me.LabelControl1.Margin = New System.Windows.Forms.Padding(2)
             Me.LabelControl1.Name = "LabelControl1"
             Me.LabelControl1.Size = New System.Drawing.Size(51, 18)
@@ -107,7 +106,7 @@
             '
             Me.LabelControl_Nombre.Anchor = System.Windows.Forms.AnchorStyles.Right
             Me.LabelControl_Nombre.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.LabelControl_Nombre.Location = New System.Drawing.Point(61, 55)
+            Me.LabelControl_Nombre.Location = New System.Drawing.Point(60, 55)
             Me.LabelControl_Nombre.Margin = New System.Windows.Forms.Padding(2)
             Me.LabelControl_Nombre.Name = "LabelControl_Nombre"
             Me.LabelControl_Nombre.Size = New System.Drawing.Size(59, 18)
@@ -118,7 +117,7 @@
             '
             Me.LabelControl_Categoria.Anchor = System.Windows.Forms.AnchorStyles.Right
             Me.LabelControl_Categoria.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.LabelControl_Categoria.Location = New System.Drawing.Point(339, 12)
+            Me.LabelControl_Categoria.Location = New System.Drawing.Point(338, 12)
             Me.LabelControl_Categoria.Margin = New System.Windows.Forms.Padding(2)
             Me.LabelControl_Categoria.Name = "LabelControl_Categoria"
             Me.LabelControl_Categoria.Size = New System.Drawing.Size(73, 18)
@@ -129,7 +128,7 @@
             '
             Me.LabelControl_Stock.Anchor = System.Windows.Forms.AnchorStyles.Right
             Me.LabelControl_Stock.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.LabelControl_Stock.Location = New System.Drawing.Point(620, 55)
+            Me.LabelControl_Stock.Location = New System.Drawing.Point(619, 55)
             Me.LabelControl_Stock.Margin = New System.Windows.Forms.Padding(2)
             Me.LabelControl_Stock.Name = "LabelControl_Stock"
             Me.LabelControl_Stock.Size = New System.Drawing.Size(43, 18)
@@ -140,21 +139,21 @@
             '
             Me.TextBox_Codigo.Anchor = System.Windows.Forms.AnchorStyles.Left
             Me.TextBox_Codigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.TextBox_Codigo.Location = New System.Drawing.Point(124, 9)
+            Me.TextBox_Codigo.Location = New System.Drawing.Point(123, 9)
             Me.TextBox_Codigo.Margin = New System.Windows.Forms.Padding(2)
             Me.TextBox_Codigo.Name = "TextBox_Codigo"
             Me.TextBox_Codigo.Size = New System.Drawing.Size(133, 24)
-            Me.TextBox_Codigo.TabIndex = 5
+            Me.TextBox_Codigo.TabIndex = 0
             '
             'TextBox_Precio
             '
             Me.TextBox_Precio.Anchor = System.Windows.Forms.AnchorStyles.Left
             Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.TextBox_Precio.Location = New System.Drawing.Point(416, 52)
+            Me.TextBox_Precio.Location = New System.Drawing.Point(415, 52)
             Me.TextBox_Precio.Margin = New System.Windows.Forms.Padding(2)
             Me.TextBox_Precio.Name = "TextBox_Precio"
             Me.TextBox_Precio.Size = New System.Drawing.Size(133, 24)
-            Me.TextBox_Precio.TabIndex = 7
+            Me.TextBox_Precio.TabIndex = 3
             '
             'SimpleButton_Guardar
             '
@@ -164,11 +163,11 @@
             Me.SimpleButton_Guardar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
             Me.SimpleButton_Guardar.Image = CType(resources.GetObject("SimpleButton_Guardar.Image"), System.Drawing.Image)
             Me.SimpleButton_Guardar.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-            Me.SimpleButton_Guardar.Location = New System.Drawing.Point(565, 2)
+            Me.SimpleButton_Guardar.Location = New System.Drawing.Point(564, 2)
             Me.SimpleButton_Guardar.Margin = New System.Windows.Forms.Padding(2)
             Me.SimpleButton_Guardar.Name = "SimpleButton_Guardar"
             Me.SimpleButton_Guardar.Size = New System.Drawing.Size(98, 39)
-            Me.SimpleButton_Guardar.TabIndex = 9
+            Me.SimpleButton_Guardar.TabIndex = 5
             Me.SimpleButton_Guardar.Text = "Guardar"
             '
             'ComboBox_Categoria
@@ -178,10 +177,10 @@
             Me.ComboBox_Categoria.DisplayMember = "Nombre"
             Me.ComboBox_Categoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.ComboBox_Categoria.FormattingEnabled = True
-            Me.ComboBox_Categoria.Location = New System.Drawing.Point(417, 8)
+            Me.ComboBox_Categoria.Location = New System.Drawing.Point(416, 8)
             Me.ComboBox_Categoria.Name = "ComboBox_Categoria"
             Me.ComboBox_Categoria.Size = New System.Drawing.Size(132, 26)
-            Me.ComboBox_Categoria.TabIndex = 12
+            Me.ComboBox_Categoria.TabIndex = 2
             Me.ComboBox_Categoria.ValueMember = "ID"
             '
             'CategoriaDTOBindingSource
@@ -192,7 +191,7 @@
             '
             Me.LabelControl4.Anchor = System.Windows.Forms.AnchorStyles.Right
             Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.LabelControl4.Location = New System.Drawing.Point(364, 55)
+            Me.LabelControl4.Location = New System.Drawing.Point(363, 55)
             Me.LabelControl4.Margin = New System.Windows.Forms.Padding(2)
             Me.LabelControl4.Name = "LabelControl4"
             Me.LabelControl4.Size = New System.Drawing.Size(48, 18)
@@ -203,20 +202,20 @@
             '
             Me.TextBox_Nombre.Anchor = System.Windows.Forms.AnchorStyles.Left
             Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.TextBox_Nombre.Location = New System.Drawing.Point(124, 52)
+            Me.TextBox_Nombre.Location = New System.Drawing.Point(123, 52)
             Me.TextBox_Nombre.Margin = New System.Windows.Forms.Padding(2)
             Me.TextBox_Nombre.Name = "TextBox_Nombre"
             Me.TextBox_Nombre.Size = New System.Drawing.Size(133, 24)
-            Me.TextBox_Nombre.TabIndex = 6
+            Me.TextBox_Nombre.TabIndex = 1
             '
             'TextBox_Stock
             '
             Me.TextBox_Stock.Anchor = System.Windows.Forms.AnchorStyles.Left
             Me.TextBox_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.TextBox_Stock.Location = New System.Drawing.Point(668, 52)
+            Me.TextBox_Stock.Location = New System.Drawing.Point(667, 52)
             Me.TextBox_Stock.Name = "TextBox_Stock"
             Me.TextBox_Stock.Size = New System.Drawing.Size(133, 24)
-            Me.TextBox_Stock.TabIndex = 13
+            Me.TextBox_Stock.TabIndex = 4
             '
             'TableLayoutPanel2
             '

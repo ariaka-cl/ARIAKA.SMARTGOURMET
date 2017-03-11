@@ -7,6 +7,7 @@ Namespace Models
         Public Property Password As String
         Public Property FechaCreacion As Date?
         Public Property RolID As Integer
-        Public Overridable Property Rol As String
+        Public Property Rol As RolDTO
+
     End Class
 End Namespace
