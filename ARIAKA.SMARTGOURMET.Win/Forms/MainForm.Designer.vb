@@ -221,7 +221,8 @@ Namespace Forms
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.ClientSize = New System.Drawing.Size(1053, 651)
             Me.Controls.Add(Me.TableLayoutPanel_Main)
-            Me.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow
+            Me.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow
+            Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "MainForm"
             Me.Text = "Smart Gourtmet"
             Me.TableLayoutPanel_Main.ResumeLayout(False)
