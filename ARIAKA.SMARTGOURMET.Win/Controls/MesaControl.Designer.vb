@@ -19,6 +19,7 @@ Partial Class MesaControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MesaControl))
         Me.TableLayoutPanel_MesaMain = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel_MesaRow1 = New System.Windows.Forms.TableLayoutPanel()
@@ -37,9 +38,9 @@ Partial Class MesaControl
         Me.LabelControl_Garzon = New DevExpress.XtraEditors.LabelControl()
         Me.DateTimePicker_Fecha = New System.Windows.Forms.DateTimePicker()
         Me.ComboBox_Garzones = New System.Windows.Forms.ComboBox()
-        Me.UserDTOBindingSource = New System.Windows.Forms.BindingSource()
+        Me.UserDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SearchLookUpEdit_Producto = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.ProductosDTOBindingSource = New System.Windows.Forms.BindingSource()
+        Me.ProductosDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colProducCodigo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,7 +79,7 @@ Partial Class MesaControl
         Me.TableLayoutPanel_MesaMain.RowCount = 4
         Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 296.0!))
+        Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90.0!))
         Me.TableLayoutPanel_MesaMain.Size = New System.Drawing.Size(935, 532)
         Me.TableLayoutPanel_MesaMain.TabIndex = 0
@@ -419,15 +420,15 @@ Partial Class MesaControl
         Me.ProductosMesaControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProductosMesaControl1.Location = New System.Drawing.Point(3, 133)
         Me.ProductosMesaControl1.Name = "ProductosMesaControl1"
-        Me.ProductosMesaControl1.Size = New System.Drawing.Size(929, 290)
+        Me.ProductosMesaControl1.Size = New System.Drawing.Size(929, 306)
         Me.ProductosMesaControl1.TabIndex = 2
         '
         'RichTextBox_Comentarios
         '
         Me.RichTextBox_Comentarios.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichTextBox_Comentarios.Location = New System.Drawing.Point(3, 429)
+        Me.RichTextBox_Comentarios.Location = New System.Drawing.Point(3, 445)
         Me.RichTextBox_Comentarios.Name = "RichTextBox_Comentarios"
-        Me.RichTextBox_Comentarios.Size = New System.Drawing.Size(929, 100)
+        Me.RichTextBox_Comentarios.Size = New System.Drawing.Size(929, 84)
         Me.RichTextBox_Comentarios.TabIndex = 3
         Me.RichTextBox_Comentarios.Text = ""
         '
