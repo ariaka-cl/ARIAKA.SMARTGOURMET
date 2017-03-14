@@ -20,6 +20,7 @@
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
+            Me.components = New System.ComponentModel.Container()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CocinaReport))
             Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
             Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
@@ -60,7 +61,7 @@
             Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.FormattingRule1 = New DevExpress.XtraReports.UI.FormattingRule()
-            Me.ObjectDataSourceMesaDetalle = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource()
+            Me.ObjectDataSourceMesaDetalle = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
             CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrRichText_Observacion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,7 +158,7 @@
             Me.XrTableCell15.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.XrTableCell15.Name = "XrTableCell15"
             Me.XrTableCell15.StylePriority.UseFont = False
-            Me.XrTableCell15.Text = "********Gracias por su ferencia***********"
+            Me.XrTableCell15.Text = "********Gracias por su Preferencia***********"
             Me.XrTableCell15.Weight = 3.0R
             '
             'PageFooterBand1

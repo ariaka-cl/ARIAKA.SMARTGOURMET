@@ -20,6 +20,7 @@
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
+            Me.components = New System.ComponentModel.Container()
             Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
             Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
             Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -69,13 +70,17 @@
             Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.FormattingRule1 = New DevExpress.XtraReports.UI.FormattingRule()
-            Me.ObjectDataSourceMesaDetalle = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource()
+            Me.ObjectDataSourceMesaDetalle = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+            Me.FilteringUIContext1 = New DevExpress.Utils.Filtering.FilteringUIContext(Me.components)
+            Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
+            Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
             CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTableTotales, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTableHeader, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.ObjectDataSourceMesaDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.FilteringUIContext1, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
             '
             'Detail
@@ -244,7 +249,7 @@
             '
             Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable3})
             Me.BottomMargin.Dpi = 100.0!
-            Me.BottomMargin.HeightF = 51.0!
+            Me.BottomMargin.HeightF = 61.41663!
             Me.BottomMargin.Name = "BottomMargin"
             Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
             Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -253,10 +258,10 @@
             '
             Me.XrTable3.AnchorVertical = DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom
             Me.XrTable3.Dpi = 100.0!
-            Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(5.999883!, 16.00005!)
+            Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 0!)
             Me.XrTable3.Name = "XrTable3"
-            Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow7})
-            Me.XrTable3.SizeF = New System.Drawing.SizeF(286.0002!, 24.99994!)
+            Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow10, Me.XrTableRow7})
+            Me.XrTable3.SizeF = New System.Drawing.SizeF(286.0002!, 49.99988!)
             '
             'XrTableRow7
             '
@@ -272,7 +277,9 @@
             Me.XrTableCell15.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.XrTableCell15.Name = "XrTableCell15"
             Me.XrTableCell15.StylePriority.UseFont = False
-            Me.XrTableCell15.Text = "********Gracias por su ferencia***********"
+            Me.XrTableCell15.StylePriority.UseTextAlignment = False
+            Me.XrTableCell15.Text = " 21 de Mayo 489 -- 58 2322071"
+            Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
             Me.XrTableCell15.Weight = 3.0R
             '
             'PageFooterBand1
@@ -527,13 +534,30 @@
             Me.ObjectDataSourceMesaDetalle.DataSource = GetType(ARIAKA.SMARTGOURMET.Win.Models.ResumenMesaDetalleDTO)
             Me.ObjectDataSourceMesaDetalle.Name = "ObjectDataSourceMesaDetalle"
             '
+            'XrTableRow10
+            '
+            Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell10})
+            Me.XrTableRow10.Dpi = 100.0!
+            Me.XrTableRow10.Name = "XrTableRow10"
+            Me.XrTableRow10.Weight = 1.0R
+            '
+            'XrTableCell10
+            '
+            Me.XrTableCell10.CanGrow = False
+            Me.XrTableCell10.Dpi = 100.0!
+            Me.XrTableCell10.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrTableCell10.Name = "XrTableCell10"
+            Me.XrTableCell10.StylePriority.UseFont = False
+            Me.XrTableCell10.Text = "********Gracias por su Prerencia***********"
+            Me.XrTableCell10.Weight = 3.0R
+            '
             'BoletaReport
             '
             Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.GroupHeader1})
             Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSourceMesaDetalle})
             Me.DataSource = Me.ObjectDataSourceMesaDetalle
             Me.FormattingRuleSheet.AddRange(New DevExpress.XtraReports.UI.FormattingRule() {Me.FormattingRule1})
-            Me.Margins = New System.Drawing.Printing.Margins(0, 0, 10, 51)
+            Me.Margins = New System.Drawing.Printing.Margins(0, 0, 10, 61)
             Me.PageHeight = 600
             Me.PageWidth = 302
             Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
@@ -549,6 +573,7 @@
             CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.XrTableHeader, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.ObjectDataSourceMesaDetalle, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.FilteringUIContext1, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
         End Sub
@@ -602,5 +627,8 @@
         Friend WithEvents XrTableRow9 As DevExpress.XtraReports.UI.XRTableRow
         Friend WithEvents XrTableCell_Fecha As DevExpress.XtraReports.UI.XRTableCell
         Friend WithEvents XrTableCell_Fecha_Value As DevExpress.XtraReports.UI.XRTableCell
+        Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
+        Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
+        Friend WithEvents FilteringUIContext1 As DevExpress.Utils.Filtering.FilteringUIContext
     End Class
 End Namespace
