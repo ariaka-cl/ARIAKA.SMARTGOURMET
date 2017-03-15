@@ -24,6 +24,9 @@ Partial Class ResumenMesaGridControl
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
             Me.components = New System.ComponentModel.Container()
+            Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+            Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+            Me.colEstado = New DevExpress.XtraGrid.Columns.GridColumn()
             Me.TableLayoutPanel_Contenedor = New System.Windows.Forms.TableLayoutPanel()
             Me.GridControl_ResumenMesa = New DevExpress.XtraGrid.GridControl()
             Me.MesaDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -31,7 +34,6 @@ Partial Class ResumenMesaGridControl
             Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
             Me.colNumero = New DevExpress.XtraGrid.Columns.GridColumn()
             Me.colFechaCreacion = New DevExpress.XtraGrid.Columns.GridColumn()
-            Me.colEstado = New DevExpress.XtraGrid.Columns.GridColumn()
             Me.colNotas = New DevExpress.XtraGrid.Columns.GridColumn()
             Me.colUsuarioID = New DevExpress.XtraGrid.Columns.GridColumn()
             Me.colUsuario = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -40,6 +42,11 @@ Partial Class ResumenMesaGridControl
             CType(Me.MesaDTOBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.CardView1, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
+            '
+            'colEstado
+            '
+            Me.colEstado.FieldName = "Estado"
+            Me.colEstado.Name = "colEstado"
             '
             'TableLayoutPanel_Contenedor
             '
@@ -71,10 +78,19 @@ Partial Class ResumenMesaGridControl
             '
             'CardView1
             '
-            Me.CardView1.Appearance.Card.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.CardView1.Appearance.Card.Font = New System.Drawing.Font("Tahoma", 9.0!)
             Me.CardView1.Appearance.Card.Options.UseFont = True
             Me.CardView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colNumero, Me.colFechaCreacion, Me.colEstado, Me.colNotas, Me.colUsuarioID, Me.colUsuario})
             Me.CardView1.FocusedCardTopFieldIndex = 0
+            GridFormatRule1.Column = Me.colEstado
+            GridFormatRule1.Name = "Format0"
+            FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.OliveDrab
+            FormatConditionRuleValue1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+            FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+            FormatConditionRuleValue1.Appearance.Options.UseFont = True
+            FormatConditionRuleValue1.Expression = "[Estado] = 3"
+            GridFormatRule1.Rule = FormatConditionRuleValue1
+            Me.CardView1.FormatRules.Add(GridFormatRule1)
             Me.CardView1.GridControl = Me.GridControl_ResumenMesa
             Me.CardView1.Name = "CardView1"
             Me.CardView1.OptionsBehavior.Editable = False
@@ -102,11 +118,6 @@ Partial Class ResumenMesaGridControl
             Me.colFechaCreacion.Name = "colFechaCreacion"
             Me.colFechaCreacion.Visible = True
             Me.colFechaCreacion.VisibleIndex = 1
-            '
-            'colEstado
-            '
-            Me.colEstado.FieldName = "Estado"
-            Me.colEstado.Name = "colEstado"
             '
             'colNotas
             '

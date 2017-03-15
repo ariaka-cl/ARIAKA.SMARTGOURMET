@@ -4,6 +4,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports System.Windows.Forms
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports System.Drawing.Drawing2D
+Imports DevExpress.XtraGrid.Views.Layout.Events
 
 Namespace Controls
     Public Class ResumenMesaGridControl

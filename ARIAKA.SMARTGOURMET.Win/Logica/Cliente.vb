@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Data.Entity
+Imports System.Windows.Forms
 Imports ARIAKA.SMARTGOURMET.Data
 Namespace Logica
     Public Class Cliente
@@ -73,7 +74,7 @@ Namespace Logica
         Public Function GetMesas(fecha As Date) As List(Of Models.MesaDTO)
             Dim db As New Data.SGContext
             Try
-                Dim listMesa As List(Of Mesa) = db.Mesas.ToList()
+                Dim listMesa As List(Of Mesa) = db.Mesas.Where(Function(m) DbFunctions.TruncateTime(m.FechaCreacion) = fecha.Date).ToList()
                 Dim users As List(Of User) = db.Users.ToList()
 
                 Dim listMesaDTO As New List(Of Models.MesaDTO)
@@ -227,14 +228,17 @@ Namespace Logica
             Dim db As New SGContext
             Dim estadoMesa As Integer
             Try
-                Dim mesaPagar As Mesa = db.Mesas.Where(Function(m) m.ID = mesaID AndAlso m.Estado = Models.MesaEstado.Impresa).SingleOrDefault()
+                Dim mesaPagar As Mesa = db.Mesas.Where(Function(m) m.ID = mesaID).SingleOrDefault()
                 If mesaPagar IsNot Nothing Then
                     estadoMesa = mesaPagar.Estado
-                    mesaPagar.Estado = Models.MesaEstado.Pagada
-                    db.SaveChanges()
-                    Return Models.MesaEstado.Pagada
+                    If mesaPagar.Estado = Models.MesaEstado.Pagada Then Return Models.MesaEstado.Vacia
+                    If mesaPagar.Estado = Models.MesaEstado.Impresa Then
+                        mesaPagar.Estado = Models.MesaEstado.Pagada
+                        db.SaveChanges()
+                        Return Models.MesaEstado.Pagada
+                    End If
                 End If
-                Return estadoMesa
+                    Return estadoMesa
             Catch ex As Exception
                 MessageBox.Show(String.Format("Error : {0}", ex.Message), "Error Pagando Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return estadoMesa

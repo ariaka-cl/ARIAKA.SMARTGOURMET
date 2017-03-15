@@ -224,6 +224,9 @@ Public Class MesaControl
                 Case Models.MesaEstado.Ocupada
                     MessageBox.Show("No se pudo pagar la mesa, aún no se imprime cuenta", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
+                Case Models.MesaEstado.Vacia
+                    MessageBox.Show("La mesa ya se pago anteriormente", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
                 Case Else
                     MessageBox.Show("No se pudo pagar la mesa, verifique que este impresa la cuenta.", "Pagar Mesa", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
