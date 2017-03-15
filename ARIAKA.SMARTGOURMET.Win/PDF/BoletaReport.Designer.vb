@@ -40,6 +40,8 @@
             Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
             Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
             Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
+            Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
+            Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.XrTableRow7 = New DevExpress.XtraReports.UI.XRTableRow()
             Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
             Me.PageFooterBand1 = New DevExpress.XtraReports.UI.PageFooterBand()
@@ -72,8 +74,6 @@
             Me.FormattingRule1 = New DevExpress.XtraReports.UI.FormattingRule()
             Me.ObjectDataSourceMesaDetalle = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
             Me.FilteringUIContext1 = New DevExpress.Utils.Filtering.FilteringUIContext(Me.components)
-            Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
-            Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
             CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTableTotales, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,10 +145,10 @@
             'XrTableTotales
             '
             Me.XrTableTotales.Dpi = 100.0!
-            Me.XrTableTotales.LocationFloat = New DevExpress.Utils.PointFloat(77.4999!, 61.87503!)
+            Me.XrTableTotales.LocationFloat = New DevExpress.Utils.PointFloat(42.08331!, 47.29169!)
             Me.XrTableTotales.Name = "XrTableTotales"
             Me.XrTableTotales.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3, Me.XrTableRow4, Me.XrTableRow8})
-            Me.XrTableTotales.SizeF = New System.Drawing.SizeF(214.5002!, 75.0!)
+            Me.XrTableTotales.SizeF = New System.Drawing.SizeF(249.9168!, 75.0!)
             '
             'XrTableRow3
             '
@@ -166,7 +166,7 @@
             Me.XrTableCell8.StylePriority.UseTextAlignment = False
             Me.XrTableCell8.Text = "Sub Total: "
             Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-            Me.XrTableCell8.Weight = 1.6758155879080634R
+            Me.XrTableCell8.Weight = 2.1218254046401404R
             '
             'XrTableCell_Total
             '
@@ -193,9 +193,9 @@
             Me.XrTableCell7.Name = "XrTableCell7"
             Me.XrTableCell7.StylePriority.UseFont = False
             Me.XrTableCell7.StylePriority.UseTextAlignment = False
-            Me.XrTableCell7.Text = "Propina 10% : "
+            Me.XrTableCell7.Text = "Propina Sugerida 10% : "
             Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-            Me.XrTableCell7.Weight = 1.6758155879080634R
+            Me.XrTableCell7.Weight = 2.1218254046401404R
             '
             'XrTableCell_Propina
             '
@@ -224,7 +224,7 @@
             Me.XrTableCell_TotalAll.StylePriority.UseTextAlignment = False
             Me.XrTableCell_TotalAll.Text = "Total: "
             Me.XrTableCell_TotalAll.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-            Me.XrTableCell_TotalAll.Weight = 1.6758145459574769R
+            Me.XrTableCell_TotalAll.Weight = 2.1218243626895541R
             '
             'XrTableCell_TotalAll_Value
             '
@@ -262,6 +262,23 @@
             Me.XrTable3.Name = "XrTable3"
             Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow10, Me.XrTableRow7})
             Me.XrTable3.SizeF = New System.Drawing.SizeF(286.0002!, 49.99988!)
+            '
+            'XrTableRow10
+            '
+            Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell10})
+            Me.XrTableRow10.Dpi = 100.0!
+            Me.XrTableRow10.Name = "XrTableRow10"
+            Me.XrTableRow10.Weight = 1.0R
+            '
+            'XrTableCell10
+            '
+            Me.XrTableCell10.CanGrow = False
+            Me.XrTableCell10.Dpi = 100.0!
+            Me.XrTableCell10.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrTableCell10.Name = "XrTableCell10"
+            Me.XrTableCell10.StylePriority.UseFont = False
+            Me.XrTableCell10.Text = "********Gracias por su Preferencia***********"
+            Me.XrTableCell10.Weight = 3.0R
             '
             'XrTableRow7
             '
@@ -533,23 +550,6 @@
             '
             Me.ObjectDataSourceMesaDetalle.DataSource = GetType(ARIAKA.SMARTGOURMET.Win.Models.ResumenMesaDetalleDTO)
             Me.ObjectDataSourceMesaDetalle.Name = "ObjectDataSourceMesaDetalle"
-            '
-            'XrTableRow10
-            '
-            Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell10})
-            Me.XrTableRow10.Dpi = 100.0!
-            Me.XrTableRow10.Name = "XrTableRow10"
-            Me.XrTableRow10.Weight = 1.0R
-            '
-            'XrTableCell10
-            '
-            Me.XrTableCell10.CanGrow = False
-            Me.XrTableCell10.Dpi = 100.0!
-            Me.XrTableCell10.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.XrTableCell10.Name = "XrTableCell10"
-            Me.XrTableCell10.StylePriority.UseFont = False
-            Me.XrTableCell10.Text = "********Gracias por su Prerencia***********"
-            Me.XrTableCell10.Weight = 3.0R
             '
             'BoletaReport
             '
