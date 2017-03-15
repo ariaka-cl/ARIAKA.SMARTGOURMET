@@ -166,7 +166,8 @@ Public Class MesaControl
         End If
 
         Dim report As New PDF.BoletaReport() With {.ShowPrintMarginsWarning = False, .ShowPrintStatusDialog = False}
-        report.ObjectDataSourceMesaDetalle.DataSource = _cliente.GetMesaDetalles(_mesaID)
+        Dim listMesaDetail As List(Of Models.MesaDetalleDTO) = _cliente.GetMesaDetalles(_mesaID)
+        report.ObjectDataSourceMesaDetalle.DataSource = GroupData(listMesaDetail)
         report.XrTableCell_Total.Text = Me.LabelControl_Suma.Text
         report.XrTableCell_Garzon.Text = CType(ComboBox_Garzones.SelectedItem, Models.UserDTO).Nombre
         report.XrTableCell_Hora_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortTimeString()
@@ -237,7 +238,8 @@ Public Class MesaControl
         End If
 
         Dim report As New PDF.CocinaReport() With {.ShowPrintMarginsWarning = False, .ShowPrintStatusDialog = False}
-        report.ObjectDataSourceMesaDetalle.DataSource = _cliente.GetProductosImprimir(_mesaID)
+        Dim listDateMesa As List(Of Models.MesaDetalleDTO) = _cliente.GetProductosImprimir(_mesaID)
+        report.ObjectDataSourceMesaDetalle.DataSource = GroupData(listDateMesa)
         report.XrTableCell_Garzon.Text = CType(ComboBox_Garzones.SelectedItem, Models.UserDTO).Nombre
         report.XrTableCell_Hora_Value.Text = Me.DateTimePicker_Fecha.Value.ToShortTimeString()
         report.XrTableCell_MesaNumero.Text = Me.TextBox_NumeroMesa.Text
@@ -250,4 +252,32 @@ Public Class MesaControl
 
         MessageBox.Show("Se  Imprimio en Cocina", "Imprimir Cocina", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
+
+    Public Function GroupData(listDetalles As List(Of Models.MesaDetalleDTO)) As List(Of Models.ResumenMesaDetalleDTO)
+        Dim dict As New Dictionary(Of Integer, String)
+        Dim listProduct As New List(Of Models.ResumenMesaDetalleDTO)
+        For Each mesaDetail As Models.MesaDetalleDTO In listDetalles
+            Dim acum As Integer = 0
+            Dim precio As Integer = 0
+            Dim nombre As String = mesaDetail.Producto.Nombre
+            If Not dict.TryGetValue(mesaDetail.ProductoID, nombre) Then
+                acum = acum + 1
+                precio = precio + mesaDetail.Producto.Precio
+                listProduct.Add(New Models.ResumenMesaDetalleDTO With {.ID = mesaDetail.ProductoID,
+                                                                       .Cantidad = acum,
+                                                                       .Nombre = mesaDetail.Producto.Nombre,
+                                                                       .Precio = precio})
+                dict.Add(mesaDetail.ProductoID, nombre)
+            Else
+                Dim rs As Models.ResumenMesaDetalleDTO = listProduct.Where(Function(pr) pr.ID = mesaDetail.ProductoID).SingleOrDefault()
+                rs.Cantidad = rs.Cantidad + 1
+                rs.Precio = rs.Precio + mesaDetail.Producto.Precio
+                Dim reAux As New Models.ResumenMesaDetalleDTO With {.Cantidad = rs.Cantidad, .ID = rs.ID, .Nombre = rs.Nombre, .Precio = rs.Precio}
+                listProduct.Remove(rs)
+                listProduct.Add(reAux)
+            End If
+        Next
+
+        Return listProduct
+    End Function
 End Class

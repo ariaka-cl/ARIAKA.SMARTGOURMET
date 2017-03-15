@@ -79,7 +79,7 @@ Partial Class MesaControl
         Me.TableLayoutPanel_MesaMain.RowCount = 4
         Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 296.0!))
+        Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel_MesaMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90.0!))
         Me.TableLayoutPanel_MesaMain.Size = New System.Drawing.Size(935, 532)
         Me.TableLayoutPanel_MesaMain.TabIndex = 0
@@ -420,15 +420,15 @@ Partial Class MesaControl
         Me.ProductosMesaControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProductosMesaControl1.Location = New System.Drawing.Point(3, 133)
         Me.ProductosMesaControl1.Name = "ProductosMesaControl1"
-        Me.ProductosMesaControl1.Size = New System.Drawing.Size(929, 290)
+        Me.ProductosMesaControl1.Size = New System.Drawing.Size(929, 306)
         Me.ProductosMesaControl1.TabIndex = 2
         '
         'RichTextBox_Comentarios
         '
         Me.RichTextBox_Comentarios.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichTextBox_Comentarios.Location = New System.Drawing.Point(3, 429)
+        Me.RichTextBox_Comentarios.Location = New System.Drawing.Point(3, 445)
         Me.RichTextBox_Comentarios.Name = "RichTextBox_Comentarios"
-        Me.RichTextBox_Comentarios.Size = New System.Drawing.Size(929, 100)
+        Me.RichTextBox_Comentarios.Size = New System.Drawing.Size(929, 84)
         Me.RichTextBox_Comentarios.TabIndex = 3
         Me.RichTextBox_Comentarios.Text = ""
         '

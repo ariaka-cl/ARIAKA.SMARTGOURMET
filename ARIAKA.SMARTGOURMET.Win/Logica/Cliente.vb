@@ -73,8 +73,7 @@ Namespace Logica
         Public Function GetMesas(fecha As Date) As List(Of Models.MesaDTO)
             Dim db As New Data.SGContext
             Try
-                Dim listMesa As List(Of Mesa) = db.Mesas.Where(Function(m) m.Estado = Models.MesaEstado.Ocupada _
-                                                                   OrElse m.Estado = Models.MesaEstado.Impresa).ToList()
+                Dim listMesa As List(Of Mesa) = db.Mesas.ToList()
                 Dim users As List(Of User) = db.Users.ToList()
 
                 Dim listMesaDTO As New List(Of Models.MesaDTO)

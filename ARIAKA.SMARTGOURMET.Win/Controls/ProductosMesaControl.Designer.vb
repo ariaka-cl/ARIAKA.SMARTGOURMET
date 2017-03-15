@@ -61,6 +61,7 @@ Partial Class ProductosMesaControl
         Me.GridColumn_Producto.Name = "GridColumn_Producto"
         Me.GridColumn_Producto.Visible = True
         Me.GridColumn_Producto.VisibleIndex = 1
+        Me.GridColumn_Producto.Width = 217
         '
         'GridColumn_Cantidad
         '
@@ -71,6 +72,7 @@ Partial Class ProductosMesaControl
         Me.GridColumn_Cantidad.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn_Cantidad.Visible = True
         Me.GridColumn_Cantidad.VisibleIndex = 0
+        Me.GridColumn_Cantidad.Width = 60
         '
         'GridColumn_Precio
         '
@@ -79,6 +81,7 @@ Partial Class ProductosMesaControl
         Me.GridColumn_Precio.Name = "GridColumn_Precio"
         Me.GridColumn_Precio.Visible = True
         Me.GridColumn_Precio.VisibleIndex = 2
+        Me.GridColumn_Precio.Width = 217
         '
         'GridColumn_Fecha
         '
@@ -89,6 +92,7 @@ Partial Class ProductosMesaControl
         Me.GridColumn_Fecha.Name = "GridColumn_Fecha"
         Me.GridColumn_Fecha.Visible = True
         Me.GridColumn_Fecha.VisibleIndex = 3
+        Me.GridColumn_Fecha.Width = 229
         '
         'ProductosMesaControl
         '

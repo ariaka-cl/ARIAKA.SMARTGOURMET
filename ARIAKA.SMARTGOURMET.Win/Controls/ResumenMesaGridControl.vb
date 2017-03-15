@@ -3,13 +3,14 @@ Imports DevExpress.XtraGrid.Views.Card
 Imports DevExpress.XtraGrid.Views.Grid
 Imports System.Windows.Forms
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+Imports System.Drawing.Drawing2D
 
 Namespace Controls
     Public Class ResumenMesaGridControl
 
         Sub New()
             InitializeComponent()
-            CardView1.CardCaptionFormat = "Mesa N°: {1}"
+            CardView1.CardCaptionFormat = "Mesa N°: {2}"
             CardView1.OptionsView.ShowQuickCustomizeButton = False
         End Sub
 

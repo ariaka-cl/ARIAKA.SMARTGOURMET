@@ -44,7 +44,7 @@ Namespace Forms
             '
             'TableLayoutPanel_Main
             '
-            Me.TableLayoutPanel_Main.BackColor = System.Drawing.Color.Gainsboro
+            Me.TableLayoutPanel_Main.BackColor = System.Drawing.SystemColors.Control
             Me.TableLayoutPanel_Main.ColumnCount = 2
             Me.TableLayoutPanel_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.4605!))
             Me.TableLayoutPanel_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.5395!))
@@ -64,7 +64,7 @@ Namespace Forms
             'TableLayoutPanel_Dash
             '
             Me.TableLayoutPanel_Dash.AutoSize = True
-            Me.TableLayoutPanel_Dash.BackColor = System.Drawing.SystemColors.Control
+            Me.TableLayoutPanel_Dash.BackColor = System.Drawing.Color.Transparent
             Me.TableLayoutPanel_Dash.ColumnCount = 1
             Me.TableLayoutPanel_Dash.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
             Me.TableLayoutPanel_Dash.Controls.Add(Me.PictureBox_HomeImage, 0, 0)
@@ -89,6 +89,7 @@ Namespace Forms
             '
             'TableLayoutPanel_Header
             '
+            Me.TableLayoutPanel_Header.BackColor = System.Drawing.Color.Transparent
             Me.TableLayoutPanel_Header.ColumnCount = 2
             Me.TableLayoutPanel_Header.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147.0!))
             Me.TableLayoutPanel_Header.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -130,6 +131,7 @@ Namespace Forms
             '
             'TableLayoutPanel_LeftMenu
             '
+            Me.TableLayoutPanel_LeftMenu.BackColor = System.Drawing.SystemColors.Control
             Me.TableLayoutPanel_LeftMenu.ColumnCount = 1
             Me.TableLayoutPanel_LeftMenu.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
             Me.TableLayoutPanel_LeftMenu.Controls.Add(Me.SimpleButton_Mesas, 0, 0)
@@ -217,12 +219,17 @@ Namespace Forms
             '
             'MainForm
             '
+            Me.ActiveGlowColor = System.Drawing.Color.Transparent
+            Me.Appearance.BackColor = System.Drawing.Color.Transparent
+            Me.Appearance.Options.UseBackColor = True
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.ClientSize = New System.Drawing.Size(1053, 651)
             Me.Controls.Add(Me.TableLayoutPanel_Main)
-            Me.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow
+            Me.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow
+            Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "MainForm"
+            Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Smart Gourtmet"
             Me.TableLayoutPanel_Main.ResumeLayout(False)
             Me.TableLayoutPanel_Main.PerformLayout()
