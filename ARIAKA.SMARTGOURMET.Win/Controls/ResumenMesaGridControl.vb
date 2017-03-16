@@ -5,6 +5,8 @@ Imports System.Windows.Forms
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports System.Drawing.Drawing2D
 Imports DevExpress.XtraGrid.Views.Layout.Events
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid
 
 Namespace Controls
     Public Class ResumenMesaGridControl
@@ -41,6 +43,29 @@ Namespace Controls
             My.Forms.MainForm.TableLayoutPanel_Dash.Refresh()
 
         End Sub
+
+        'Private Sub CardView1_CustomDrawCardFieldValue(sender As Object, e As CardCaptionCustomDrawEventArgs) Handles CardView1.CustomDrawCardCaption
+        '    Dim view As CardView = CType(sender, CardView)
+        '    Dim mesa As Models.MesaDTO = TryCast(CType(view.DataSource, BindingSource).Current, Models.MesaDTO)
+        '    Dim brush As Brush = Nothing
+        '    If mesa.Estado = Models.MesaEstado.Ocupada Then Return
+
+        '    Select Case mesa.Estado
+        '        Case 2
+        '            brush = e.Cache.GetGradientBrush(e.Bounds, Color.Red, Color.Crimson, LinearGradientMode.Horizontal, 2)
+        '            e.Graphics.FillRectangle(brush, e.Bounds)
+        '            e.Appearance.DrawString(e.Cache, view.GetCardCaption(e.RowHandle), e.Bounds)
+        '            e.Handled = True
+        '        Case 3
+        '            brush = e.Cache.GetGradientBrush(e.Bounds, Color.White, Color.SkyBlue, LinearGradientMode.Horizontal)
+        '            e.Appearance.ForeColor = Color.Indigo
+        '            e.Appearance.Font = e.Cache.GetFont(e.Appearance.Font, FontStyle.Bold)
+        '            e.Graphics.FillRectangle(brush, e.Bounds)
+        '            e.Appearance.DrawString(e.Cache, view.GetCardCaption(e.RowHandle), e.Bounds)
+        '            e.Handled = True
+        '    End Select
+
+        'End Sub
 
     End Class
 End Namespace

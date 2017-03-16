@@ -127,6 +127,18 @@
     <Compile Include="Controls\CategoriaViewControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\DeliveryControl.Designer.vb">
+      <DependentUpon>DeliveryControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeliveryControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DeliveryProductosControl.Designer.vb">
+      <DependentUpon>DeliveryProductosControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeliveryProductosControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\PersonalControl.Designer.vb">
       <DependentUpon>PersonalControl.vb</DependentUpon>
     </Compile>
@@ -188,6 +200,7 @@
     <Compile Include="Models\MesaDTO.vb" />
     <Compile Include="Models\MesaEstado.vb" />
     <Compile Include="Models\ProductosDTO.vb" />
+    <Compile Include="Models\ResumenMesaDetalleDTO.vb" />
     <Compile Include="Models\RolDTO.vb" />
     <Compile Include="Models\UserDTO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -224,6 +237,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CategoriaViewControl.resx">
       <DependentUpon>CategoriaViewControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DeliveryControl.resx">
+      <DependentUpon>DeliveryControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DeliveryProductosControl.resx">
+      <DependentUpon>DeliveryProductosControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MesaControl.resx">
       <DependentUpon>MesaControl.vb</DependentUpon>
@@ -272,6 +291,7 @@
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.MesaDetalleDTO.datasource" />
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.MesaDTO.datasource" />
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.ProductosDTO.datasource" />
+    <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.ResumenMesaDetalleDTO.datasource" />
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.RolDTO.datasource" />
     <None Include="My Project\DataSources\ARIAKA.SMARTGOURMET.Win.Models.UserDTO.datasource" />
     <None Include="My Project\Settings.settings">

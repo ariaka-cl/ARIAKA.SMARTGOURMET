@@ -39,5 +39,12 @@
             Me.TableLayoutPanel_Dash.Controls.Add(personal, 0, 0)
             Me.TableLayoutPanel_Dash.Refresh()
         End Sub
+
+        Private Sub SimpleButton_Delivery_Click(sender As Object, e As EventArgs) Handles SimpleButton_Delivery.Click
+            Me.TableLayoutPanel_Dash.Controls.Clear()
+            Dim delivery As New Controls.DeliveryControl With {.Dock = Windows.Forms.DockStyle.Fill, .Visible = True}
+            Me.TableLayoutPanel_Dash.Controls.Add(delivery, 0, 0)
+            Me.TableLayoutPanel_Dash.Refresh()
+        End Sub
     End Class
 End Namespace

@@ -19,7 +19,6 @@ Partial Class MesaControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MesaControl))
         Me.TableLayoutPanel_MesaMain = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel_MesaRow1 = New System.Windows.Forms.TableLayoutPanel()
@@ -38,9 +37,9 @@ Partial Class MesaControl
         Me.LabelControl_Garzon = New DevExpress.XtraEditors.LabelControl()
         Me.DateTimePicker_Fecha = New System.Windows.Forms.DateTimePicker()
         Me.ComboBox_Garzones = New System.Windows.Forms.ComboBox()
-        Me.UserDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.UserDTOBindingSource = New System.Windows.Forms.BindingSource()
         Me.SearchLookUpEdit_Producto = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.ProductosDTOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ProductosDTOBindingSource = New System.Windows.Forms.BindingSource()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colProducCodigo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -343,8 +342,6 @@ Partial Class MesaControl
         Me.colProducCodigo.Caption = "Codigo Producto"
         Me.colProducCodigo.FieldName = "ProducCodigo"
         Me.colProducCodigo.Name = "colProducCodigo"
-        Me.colProducCodigo.Visible = True
-        Me.colProducCodigo.VisibleIndex = 0
         '
         'colNombre
         '
@@ -352,15 +349,15 @@ Partial Class MesaControl
         Me.colNombre.FieldName = "Nombre"
         Me.colNombre.Name = "colNombre"
         Me.colNombre.Visible = True
-        Me.colNombre.VisibleIndex = 1
+        Me.colNombre.VisibleIndex = 0
         '
         'colCategoria
         '
         Me.colCategoria.Caption = "Categoria"
-        Me.colCategoria.FieldName = "Categoria"
+        Me.colCategoria.FieldName = "Categoria.Nombre"
         Me.colCategoria.Name = "colCategoria"
         Me.colCategoria.Visible = True
-        Me.colCategoria.VisibleIndex = 2
+        Me.colCategoria.VisibleIndex = 1
         '
         'colPrecio
         '
@@ -368,15 +365,13 @@ Partial Class MesaControl
         Me.colPrecio.FieldName = "Precio"
         Me.colPrecio.Name = "colPrecio"
         Me.colPrecio.Visible = True
-        Me.colPrecio.VisibleIndex = 3
+        Me.colPrecio.VisibleIndex = 2
         '
         'colStock
         '
         Me.colStock.Caption = "Stock"
         Me.colStock.FieldName = "Stock"
         Me.colStock.Name = "colStock"
-        Me.colStock.Visible = True
-        Me.colStock.VisibleIndex = 4
         '
         'TableLayoutPanel_ButtonsProdu
         '

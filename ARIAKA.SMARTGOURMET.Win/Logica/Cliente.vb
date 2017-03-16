@@ -102,10 +102,15 @@ Namespace Logica
             Try
                 Dim listProductos As List(Of Producto) = db.Productoes.ToList()
                 Dim listProductosDto As New List(Of Models.ProductosDTO)
+                Dim listCateDto As List(Of Models.CategoriaDTO) = GetCategoria()
                 For Each producto As Producto In listProductos
-                    listProductosDto.Add(New Models.ProductosDTO With {.Id = producto.ID, .Nombre = producto.Nombre,
-                                                                        .CategoriaID = producto.CategoriaID, .ProducCodigo = producto.ProductoCodigo,
-                                                                        .Precio = producto.Precio, .Stock = producto.Stock})
+                    listProductosDto.Add(New Models.ProductosDTO With {.Id = producto.ID,
+                                                                        .Nombre = producto.Nombre,
+                                                                        .CategoriaID = producto.CategoriaID,
+                                                                        .Categoria = listCateDto.Where(Function(c) c.ID = producto.CategoriaID).SingleOrDefault(),
+                                                                        .ProducCodigo = producto.ProductoCodigo,
+                                                                        .Precio = producto.Precio,
+                                                                        .Stock = producto.Stock})
                 Next
                 Return listProductosDto
             Catch ex As Exception

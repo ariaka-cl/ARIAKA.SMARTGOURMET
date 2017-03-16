@@ -549,6 +549,18 @@
         XAqqWBqcvMuoGThKsYBDrwDp1Ukl7//63zCVO5P6SnsG/gFUr3hgrZEQbQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="SimpleButton_Delivery.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAASdEVYdFRpdGxlAERyaXZpbmc7Q2FyO7bj1MUAAAFESURBVFhH7ZYxDsIwDEUruAIXQGJHDBwC
+        Ic6AWJigh+AA9AhM3IGFgb0L4hgwAUKwEGzUoCpxGztVVSFl8JL6/zw7TttIKRU1GY1ujoUHgNABqwOT
+        1S4iogdrG4gLhHLEOctFjeVl3jgOwACMHoyNTbA7aPomhA/AAUzeEMO8mWlkbIS5qNlXBRhnlW9dRkS7
+        UYNdGZWBlx1BG4QniCdEt2A2qHnRa6hB7RGipfWSI5hlFSQem2sI1GIXpk4ASIiJQbvBWsf3W4FaiCvh
+        G2vP3xEQSUie+G6udeCxprwpgLQAwnXvfZ6nFkCOeFkTCF7LBWcIsaJXDRBfTy6AlYhCLhQ1N1r7PwDc
+        aqV57A5Ijbn5HICy12vlZxwAn3vN1vw1gLT9ZFc4HZgTA4Vroh9YyCd9nABVPz5SvagqqTknPwCEDnwA
+        tx6kv85iHGwAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="PictureBox_HomeImage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAACSAAAAYZCAIAAADH8LB5AAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
