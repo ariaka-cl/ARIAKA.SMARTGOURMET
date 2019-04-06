@@ -41,5 +41,30 @@ Namespace Controls
 
         End Sub
 
+        Private Sub CardView1_CustomDrawCardCaption(sender As Object, e As CardCaptionCustomDrawEventArgs) Handles CardView1.CustomDrawCardCaption
+
+            Dim view As CardView = TryCast(sender, CardView)
+            Dim isFocusedCard As Boolean = e.RowHandle = view.FocusedRowHandle
+            Dim backBrush, foreBrush As Brush
+            Dim color1 As Color = Color.FromArgb(75, 244, 66)
+            Dim color2 As Color = Color.FromArgb(64, 186, 57)
+            Dim color3 As Color = Color.FromArgb(237, 238, 239)
+            Dim color4 As Color = Color.FromArgb(210, 213, 216)
+            If TryCast(TryCast(view.DataSource, BindingSource).DataSource, List(Of Models.MesaDTO)).Item(e.RowHandle).Estado = Models.MesaEstado.Pagada Then
+                backBrush = e.Cache.GetGradientBrush(e.Bounds, color1, color2, LinearGradientMode.ForwardDiagonal)
+                foreBrush = Brushes.White
+            Else
+                backBrush = e.Cache.GetGradientBrush(e.Bounds, color3, color4, LinearGradientMode.ForwardDiagonal)
+                foreBrush = Brushes.Coral
+            End If
+
+            Dim r As Rectangle = e.Bounds
+            r.Inflate(1, 0)
+            e.Cache.FillRectangle(backBrush, r)
+            e.Appearance.DrawString(e.Cache, view.GetCardCaption(e.RowHandle), r, foreBrush)
+            e.Handled = True
+
+        End Sub
+
     End Class
 End Namespace

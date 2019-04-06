@@ -97,6 +97,7 @@
     <Compile Include="Model\Categoria.vb" />
     <Compile Include="Model\Mesa.vb" />
     <Compile Include="Model\User.vb" />
+    <Compile Include="Model\WP_Post.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

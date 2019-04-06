@@ -107,6 +107,8 @@ Partial Class ResumenMesaGridControl
             '
             Me.colEstado.FieldName = "Estado"
             Me.colEstado.Name = "colEstado"
+            Me.colEstado.Visible = True
+            Me.colEstado.VisibleIndex = 3
             '
             'colNotas
             '

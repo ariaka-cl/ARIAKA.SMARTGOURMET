@@ -59,7 +59,7 @@ Namespace Logica
         Public Function SaberEstadoMesa(numero As String) As Models.MesaEstado
             Dim db As New Data.SGContext
             Try
-                Dim mesaEstado As Integer? = db.Mesas.Where(Function(m) m.Numero = numero).Select(Function(m) m.Estado).SingleOrDefault()
+                Dim mesaEstado As Integer? = db.Mesas.Where(Function(m) m.Numero = numero AndAlso m.Estado = Models.MesaEstado.Ocupada).Select(Function(m) m.Estado).FirstOrDefault()
                 If mesaEstado Is Nothing Then Return 0
                 Return mesaEstado
             Catch ex As Exception

@@ -9,7 +9,9 @@ Partial Public Class SGContext
 
     Public Sub New()
         MyBase.New("name=SGContext")
+        'MyBase.New("name=TPAMaratonContext")
     End Sub
+
 
 
     Public Overridable Property Boletas As DbSet(Of Boleta)
@@ -20,9 +22,11 @@ Partial Public Class SGContext
     Public Overridable Property Rols As DbSet(Of Rol)
     Public Overridable Property Users As DbSet(Of User)
 
+    'Public Overridable Property WP_Post As DbSet(Of Model.WP_Posts)
+
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
-        modelBuilder.Conventions.Remove(Of OneToManyCascadeDeleteConvention)()
-        MyBase.OnModelCreating(modelBuilder)
+        'modelBuilder.Conventions.Remove(Of OneToManyCascadeDeleteConvention)()
+        'MyBase.OnModelCreating(modelBuilder)
 
         'modelBuilder.Entity(Of Boleta)() _
         '    .Property(Function(e) e.MedioPago) _

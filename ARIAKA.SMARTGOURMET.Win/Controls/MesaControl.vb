@@ -28,7 +28,8 @@ Public Class MesaControl
         Me.TextBox_NumeroMesa.Text = mesa.Numero
         Me.DateTimePicker_Fecha.Value = mesa.FechaCreacion
         Me.RichTextBox_Comentarios.Text = mesa.Notas
-        Me.ComboBox_Garzones.SelectedItem = mesa.Usuario.Nombre
+        Me.ComboBox_Garzones.SelectedValue = mesa.Usuario.Nombre
+        Me.ComboBox_Garzones.SelectedText = mesa.Usuario.Nombre
         Dim total As Integer = 0
         If mesa.MesaDetalles IsNot Nothing Then
             Me.ProductosMesaControl1.MesaDetalleDTOBindingSource.Clear()
@@ -175,7 +176,7 @@ Public Class MesaControl
         report.XrTableCell_MesaNumero.Text = Me.TextBox_NumeroMesa.Text
         report.XrTableCell_Propina.Text = CalculaPropina()
         report.XrTableCell_TotalAll_Value.Text = SumaPropinaTotal(CalculaPropina())
-
+        'report.ExportToPdf("C:\Users\Usuario\Downloads\reporte.pdf")
         Using printingTool As New ReportPrintTool(report)
             printingTool.Print(My.Settings.PrinterCaja)
         End Using

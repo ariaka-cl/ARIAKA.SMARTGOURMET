@@ -74,6 +74,10 @@
             Me.FormattingRule1 = New DevExpress.XtraReports.UI.FormattingRule()
             Me.ObjectDataSourceMesaDetalle = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
             Me.FilteringUIContext1 = New DevExpress.Utils.Filtering.FilteringUIContext(Me.components)
+            Me.XrTableRow11 = New DevExpress.XtraReports.UI.XRTableRow()
+            Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
+            Me.XrTableRow12 = New DevExpress.XtraReports.UI.XRTableRow()
+            Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
             CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTableTotales, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,7 +149,7 @@
             'XrTableTotales
             '
             Me.XrTableTotales.Dpi = 100.0!
-            Me.XrTableTotales.LocationFloat = New DevExpress.Utils.PointFloat(42.08331!, 47.29169!)
+            Me.XrTableTotales.LocationFloat = New DevExpress.Utils.PointFloat(42.08331!, 61.875!)
             Me.XrTableTotales.Name = "XrTableTotales"
             Me.XrTableTotales.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3, Me.XrTableRow4, Me.XrTableRow8})
             Me.XrTableTotales.SizeF = New System.Drawing.SizeF(249.9168!, 75.0!)
@@ -189,7 +193,7 @@
             'XrTableCell7
             '
             Me.XrTableCell7.Dpi = 100.0!
-            Me.XrTableCell7.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrTableCell7.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.XrTableCell7.Name = "XrTableCell7"
             Me.XrTableCell7.StylePriority.UseFont = False
             Me.XrTableCell7.StylePriority.UseTextAlignment = False
@@ -200,7 +204,7 @@
             'XrTableCell_Propina
             '
             Me.XrTableCell_Propina.Dpi = 100.0!
-            Me.XrTableCell_Propina.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrTableCell_Propina.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.XrTableCell_Propina.Name = "XrTableCell_Propina"
             Me.XrTableCell_Propina.StylePriority.UseFont = False
             Me.XrTableCell_Propina.StylePriority.UseTextAlignment = False
@@ -249,7 +253,7 @@
             '
             Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable3})
             Me.BottomMargin.Dpi = 100.0!
-            Me.BottomMargin.HeightF = 61.41663!
+            Me.BottomMargin.HeightF = 99.99977!
             Me.BottomMargin.Name = "BottomMargin"
             Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
             Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -260,8 +264,8 @@
             Me.XrTable3.Dpi = 100.0!
             Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 0!)
             Me.XrTable3.Name = "XrTable3"
-            Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow10, Me.XrTableRow7})
-            Me.XrTable3.SizeF = New System.Drawing.SizeF(286.0002!, 49.99988!)
+            Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow10, Me.XrTableRow7, Me.XrTableRow11, Me.XrTableRow12})
+            Me.XrTable3.SizeF = New System.Drawing.SizeF(286.0002!, 99.99977!)
             '
             'XrTableRow10
             '
@@ -295,7 +299,7 @@
             Me.XrTableCell15.Name = "XrTableCell15"
             Me.XrTableCell15.StylePriority.UseFont = False
             Me.XrTableCell15.StylePriority.UseTextAlignment = False
-            Me.XrTableCell15.Text = " 21 de Mayo 489 -- 58 2322071"
+            Me.XrTableCell15.Text = " Diego Portales #157  Local 120 - 121"
             Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
             Me.XrTableCell15.Weight = 3.0R
             '
@@ -320,7 +324,7 @@
             Me.XrLabel15.AutoWidth = True
             Me.XrLabel15.CanGrow = False
             Me.XrLabel15.Dpi = 100.0!
-            Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 10.00001!)
             Me.XrLabel15.Name = "XrLabel15"
             Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -328,7 +332,7 @@
             Me.XrLabel15.StyleName = "Title"
             Me.XrLabel15.StylePriority.UseFont = False
             Me.XrLabel15.StylePriority.UseTextAlignment = False
-            Me.XrLabel15.Text = "Caffellatte"
+            Me.XrLabel15.Text = "Terraza Chinchorro"
             Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             '
             'XrLine3
@@ -551,13 +555,50 @@
             Me.ObjectDataSourceMesaDetalle.DataSource = GetType(ARIAKA.SMARTGOURMET.Win.Models.ResumenMesaDetalleDTO)
             Me.ObjectDataSourceMesaDetalle.Name = "ObjectDataSourceMesaDetalle"
             '
+            'XrTableRow11
+            '
+            Me.XrTableRow11.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell11})
+            Me.XrTableRow11.Dpi = 100.0!
+            Me.XrTableRow11.Name = "XrTableRow11"
+            Me.XrTableRow11.Weight = 1.0R
+            '
+            'XrTableCell11
+            '
+            Me.XrTableCell11.CanGrow = False
+            Me.XrTableCell11.Dpi = 100.0!
+            Me.XrTableCell11.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrTableCell11.Name = "XrTableCell11"
+            Me.XrTableCell11.StylePriority.UseFont = False
+            Me.XrTableCell11.StylePriority.UseTextAlignment = False
+            Me.XrTableCell11.Text = "terrazachinchorro@gmail.com - (56) 9 4761 5001"
+            Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+            Me.XrTableCell11.Weight = 3.0R
+            '
+            'XrTableRow12
+            '
+            Me.XrTableRow12.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell12})
+            Me.XrTableRow12.Dpi = 100.0!
+            Me.XrTableRow12.Name = "XrTableRow12"
+            Me.XrTableRow12.Weight = 1.0R
+            '
+            'XrTableCell12
+            '
+            Me.XrTableCell12.CanGrow = False
+            Me.XrTableCell12.Dpi = 100.0!
+            Me.XrTableCell12.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.XrTableCell12.Name = "XrTableCell12"
+            Me.XrTableCell12.StylePriority.UseFont = False
+            Me.XrTableCell12.StylePriority.UseTextAlignment = False
+            Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+            Me.XrTableCell12.Weight = 3.0R
+            '
             'BoletaReport
             '
             Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.GroupHeader1})
             Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSourceMesaDetalle})
             Me.DataSource = Me.ObjectDataSourceMesaDetalle
             Me.FormattingRuleSheet.AddRange(New DevExpress.XtraReports.UI.FormattingRule() {Me.FormattingRule1})
-            Me.Margins = New System.Drawing.Printing.Margins(0, 0, 10, 61)
+            Me.Margins = New System.Drawing.Printing.Margins(0, 0, 10, 100)
             Me.PageHeight = 600
             Me.PageWidth = 302
             Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
@@ -630,5 +671,9 @@
         Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
         Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
         Friend WithEvents FilteringUIContext1 As DevExpress.Utils.Filtering.FilteringUIContext
+        Friend WithEvents XrTableRow11 As DevExpress.XtraReports.UI.XRTableRow
+        Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
+        Friend WithEvents XrTableRow12 As DevExpress.XtraReports.UI.XRTableRow
+        Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
     End Class
 End Namespace
